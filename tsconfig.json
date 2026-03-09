@@ -19,11 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@sevalink/ui": ["./lib/ui/index.ts"],
-      "@sevalink/utils": ["./lib/utils/index.ts"],
-      "@sevalink/i18n": ["./lib/i18n/index.tsx"],
-      "@sevalink/i18n/middleware": ["./lib/i18n/middleware.ts"]
+      "@/*": ["./*"]
     }
   },
   "include": [

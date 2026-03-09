@@ -204,43 +204,53 @@ npm start
 
 ```
 seva-landing/
-├── app/                          # Next.js App Router directory
-│   ├── globals.css               # Global styles & Tailwind config
-│   ├── layout.tsx                # Root layout (fonts, metadata)
-│   └── page.tsx                  # Home page (/)
 │
-├── components/                   # Reusable React components
-│   └── ui/                       # shadcn/ui components
-│       ├── avatar.tsx            # User avatars
-│       ├── badge.tsx             # Status badges
-│       ├── button.tsx            # Button variants
-│       ├── card.tsx              # Card containers
-│       ├── dialog.tsx            # Modal dialogs
-│       ├── dropdown-menu.tsx     # Dropdown menus
-│       ├── input.tsx             # Form inputs
-│       ├── label.tsx             # Form labels
-│       ├── progress.tsx          # Progress indicators
-│       ├── select.tsx            # Select dropdowns
-│       ├── separator.tsx         # Visual separators
-│       ├── sheet.tsx             # Side panels (mobile nav)
-│       ├── skeleton.tsx          # Loading skeletons
-│       ├── sonner.tsx            # Toast notifications
-│       ├── table.tsx             # Data tables
-│       └── tabs.tsx              # Tab navigation
+├── app/                               # Next.js App Router (Routing Layer)
+│   ├── layout.tsx                     # Root layout (metadata, fonts, providers)
+│   └── page.tsx
+    |__about/                       # About page (/about)
 │
-├── lib/                          # Utility functions
-│   └── utils.ts                  # Tailwind class merge utility (cn)
+├── components/                        # Reusable React components
 │
-├── public/                       # Static assets
-│   ├── images/                   # Images (logo, hero, etc.)
-│   └── icons/                    # Favicon, app icons
+│   ├── layout/                        # Layout related components
+│   │   ├── header.tsx                 # Main navigation bar
+│   │   └── footer.tsx                 # Website footer
+│   │
+│   ├── sections/                      # Landing page sections
+│   │   ├── hero.tsx                   # Hero section
+│   │   ├── features.tsx               # Features grid
+│   │   ├── portals.tsx                # Portal selection cards
+│   │   ├── stats.tsx                  # Statistics section
+│   │   ├── testimonials.tsx           # Testimonials section
+│   │   └── cta.tsx                    # Call-to-action section
+│   │
+│   └── ui/                            # shadcn/ui components
+│       ├── button.tsx
+│       ├── card.tsx
+│       ├── dialog.tsx
+│       ├── dropdown-menu.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── sheet.tsx
+│       ├── skeleton.tsx
+│       └── sonner.tsx
 │
-├── components.json               # shadcn/ui configuration
-├── eslint.config.mjs             # ESLint configuration
-├── next.config.ts                # Next.js configuration
-├── package.json                  # Project dependencies & scripts
-├── postcss.config.mjs            # PostCSS configuration
-└── tsconfig.json                 # TypeScript configuration
+├── lib/                               # Utility functions & helpers
+│   └── utils.ts                       # Tailwind class merge utility (cn)
+│
+├── public/                            # Static assets
+│   ├── images/                        # Landing images
+│   ├── icons/                         # Icons
+│   ├── logo.svg                       # Logo
+│   └── favicon.ico                    # Browser favicon
+│
+├── components.json                    # shadcn/ui configuration
+├── eslint.config.mjs                  # ESLint configuration
+├── next.config.ts                     # Next.js configuration
+├── package.json                       # Dependencies and scripts
+├── postcss.config.mjs                 # PostCSS configuration
+├── tsconfig.json                      # TypeScript configuration
+└── README.md
 ```
 
 ---

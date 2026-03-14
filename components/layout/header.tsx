@@ -36,7 +36,7 @@ export const Header = () => {
         backgroundColor: isScrolled ? "rgba(255, 243, 224, 0.55)" : "transparent",
         backdropFilter: isScrolled ? "blur(12px)" : "none",
         WebkitBackdropFilter: isScrolled ? "blur(12px)" : "none",
-      }}
+      } as React.CSSProperties}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -99,8 +99,7 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden backdrop-blur-xl"
-            style={{ backgroundColor: "rgba(255,255,255,0.95)" }}
+            className="lg:hidden backdrop-blur-xl bg-[rgba(255,255,255,0.95)]"
           >
             <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
               {navItems.map((item) => (

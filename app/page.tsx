@@ -5,21 +5,22 @@ import { PageLoader } from "@/components/ui/page-loader";
 import StatsSection from "@/components/sections/stats-section";
 import HowItWorksSection from "@/components/sections/how-it-works";
 import ServicesSection from "@/components/sections/services-section";
-
-// Naye sections jo humne abhi banaye
 import { ForWhomSection } from "@/components/sections/for-whom";
 import { WhySevaLink } from "@/components/sections/why-sevalink";
 import { TestimonialsSection } from "@/components/sections/testimonials";
+import { PartnersSection } from "@/components/sections/partners-section";
+import { FAQSection } from "@/components/sections/faq-section";
+import { FinalCTASection } from "@/components/sections/final-cta-section";
 
 export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FFF3E0" }}>
       {/* Page transitions/loading effect */}
       <PageLoader />
-      
+
       {/* Top Navigation */}
       <Header />
-      
+
       <main>
         {/* 1. Main Banner */}
         <HeroSection />
@@ -41,6 +42,15 @@ export default function Home() {
 
         {/* 7. Social Proof (City-wise Filters) */}
         <TestimonialsSection />
+
+        {/* 8. Trusted Hospital Partners */}
+        <PartnersSection />
+
+        {/* 9. Frequently Asked Questions */}
+        <FAQSection />
+
+        {/* 10. Final CTA */}
+        <FinalCTASection />
       </main>
 
       {/* Global Footer */}

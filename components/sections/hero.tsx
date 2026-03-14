@@ -8,13 +8,12 @@ import Aurora from "@/components/ui/Aurora";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden flex items-center min-h-screen" style={{ backgroundColor: "#FFF3E0", marginTop: "-80px", paddingTop: "80px" }}>
-      {/* Aurora blend kam kiya — 0.3 se 0.15 — ab itna dark nahi hoga */}
+    <section className="relative overflow-hidden flex items-center min-h-[75vh] lg:min-h-[80vh]" style={{ backgroundColor: "#FFF3E0", marginTop: "-80px", paddingTop: "80px" }}>
       <Aurora colorStops={["#DC2626", "#FF6B6B", "#FFF3E0"]} amplitude={0.3} blend={0.15} speed={0.5} />
       <div className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full blur-3xl" style={{ backgroundColor: "#FFCDD2", opacity: 0.3 }} />
       <div className="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full blur-3xl" style={{ backgroundColor: "#FFCDD2", opacity: 0.2 }} />
 
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8 pt-32 pb-16 w-full" style={{ zIndex: 1 }}>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-8 pt-20 pb-8 w-full" style={{ zIndex: 1 }}>
         <div className="flex flex-col lg:flex-row items-center gap-10">
 
           {/* Left Content */}
@@ -29,19 +28,25 @@ export function HeroSection() {
             <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 0.1 }} className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
               {["Emergency", "Healthcare When", "You Need It Most"].map((line, i) => (
                 <motion.span key={i} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }} className="block">
-                  <motion.span whileHover={{ x: 8 }} transition={{ duration: 0.2 }} className="inline-block cursor-default text-red-600">
+                  <motion.span
+                    whileHover={{ x: 8 }}
+                    transition={{ duration: 0.2 }}
+                    className="inline-block cursor-default text-red-600"
+                    style={{ textShadow: "0 0 30px rgba(255,243,224,0.9), 0 2px 8px rgba(255,243,224,0.7)" }}
+                  >
                     {line}
                   </motion.span>
                 </motion.span>
               ))}
             </motion.h1>
 
-            {/* Paragraph — dark gray, readable on both mobile and desktop */}
+            {/* Paragraph — text shadow for readability on Aurora */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-gray-800 font-semibold text-base sm:text-lg max-w-xl mb-8 leading-relaxed"
+              className="text-gray-900 font-bold text-base sm:text-lg max-w-xl mb-8 leading-relaxed"
+              style={{ textShadow: "0 0 20px rgba(255,243,224,0.95), 0 0 40px rgba(255,243,224,0.8), 0 2px 4px rgba(255,243,224,0.9)" }}
             >
               SevaLink connects patients, hospitals, and ambulance services for faster emergency medical transportation. One click connects you to life-saving care.
             </motion.p>
@@ -74,11 +79,17 @@ export function HeroSection() {
               .animated-btn:hover .btn-circle { width: 220px; height: 220px; opacity: 1; }
             `}</style>
 
+            {/* Trust badges */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }} className="flex flex-wrap items-center gap-4">
               {["Verified Hospitals", "GPS Tracked", "Under 8 Min Response"].map((item, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-green-100 text-green-600 font-bold text-xs">✓</span>
-                  <span className="text-xs sm:text-sm text-gray-800 font-semibold">{item}</span>
+                  <span
+                    className="text-xs sm:text-sm text-gray-900 font-bold"
+                    style={{ textShadow: "0 0 15px rgba(255,243,224,0.95), 0 0 30px rgba(255,243,224,0.8)" }}
+                  >
+                    {item}
+                  </span>
                 </div>
               ))}
             </motion.div>

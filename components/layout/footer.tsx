@@ -89,7 +89,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/assets/brand/image.png" alt="SevaLink Logo" width={40} height={40} className="object-contain" />
+              <Image src="/assets/brand/sevalink-f.png" alt="SevaLink Logo" width={90} height={90} className="object-contain" />
               <span className="text-xl font-bold text-red-500">SevaLink</span>
             </Link>
             <p className="mb-6 max-w-sm text-gray-700">

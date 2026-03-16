@@ -16,7 +16,10 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section style={{ position: "relative", overflow: "hidden", padding: "80px 16px", background: "linear-gradient(135deg, #ffe0e0 0%, #FFF3E0 50%, #ffe8d6 100%)" }}>
+    <section
+      className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center landing-section-spacing"
+      style={{ position: "relative", overflow: "hidden", background: "linear-gradient(135deg, #ffe0e0 0%, #FFF3E0 50%, #ffe8d6 100%)" }}
+    >
 
       <style>{`
         @keyframes faqBlob1 {

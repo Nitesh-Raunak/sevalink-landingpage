@@ -26,7 +26,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-3 sm:px-4 lg:px-8 py-6 sm:py-12 lg:py-20 w-full z-10">
+      <div className="relative mx-auto max-w-7xl landing-section-spacing lg:px-8 w-full z-10">
         <div className="flex flex-col lg:flex-row items-center gap-10">
 
           {/* Left Content */}

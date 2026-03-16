@@ -40,7 +40,7 @@ export function ForWhomSection() {
   }, []);
 
   return (
-    <section ref={ref} className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 px-3 sm:px-4" style={{ backgroundColor: "#FFF3E0" }}>
+    <section ref={ref} className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center landing-section-spacing" style={{ backgroundColor: "#FFF3E0" }}>
       <div className="max-w-7xl mx-auto w-full">
 
         {/* Heading */}

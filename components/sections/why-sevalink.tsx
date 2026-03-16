@@ -33,7 +33,7 @@ export function WhySevaLink() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-fit sm:min-h-[700px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 px-3 sm:px-4 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-fit sm:min-h-[700px] lg:min-h-screen flex items-center landing-section-spacing bg-white overflow-hidden">
       <style>{`
         .ws-heading {
           opacity: 0;

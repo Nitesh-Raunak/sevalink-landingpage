@@ -22,15 +22,12 @@ export function FinalCTASection() {
   return (
     <section
       ref={ref}
+      className="min-h-fit sm:min-h-[500px] lg:min-h-screen flex items-center justify-center landing-section-spacing"
       style={{
         background: "linear-gradient(135deg, #1a0000 0%, #3d0000 40%, #7f1d1d 100%)",
-        padding: "clamp(40px, 6vw, 96px) clamp(12px, 4vw, 16px)",
         position: "relative",
         overflow: "hidden",
         minHeight: "auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
       }}
     >
       {/* Glow blobs */}

@@ -68,7 +68,7 @@ const partners = [
 
 export function PartnersSection() {
   return (
-    <section className="min-h-fit sm:min-h-[400px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 bg-white overflow-hidden px-3 sm:px-4">
+    <section className="min-h-fit sm:min-h-[400px] lg:min-h-screen flex items-center landing-section-spacing bg-white overflow-hidden">
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }

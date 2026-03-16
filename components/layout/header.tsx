@@ -20,10 +20,7 @@ export const Header = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        backgroundColor: "transparent",
-      } as React.CSSProperties}
+      className="relative z-50 transition-all duration-500"
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -62,32 +59,66 @@ export const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-xl hover:bg-gray-100 text-slate-900"
+            className="lg:hidden inline-flex h-11 w-11 items-center justify-center leading-none rounded-xl bg-white/90 border border-red-100 shadow-sm text-slate-900 hover:bg-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Open menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <Menu className="h-5 w-5 shrink-0" />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden backdrop-blur-xl bg-white/95"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[60] lg:hidden"
           >
-            <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-4">
-              {navItems.map((item) => (
-                <a key={item.name} href={item.href}
-                  className="py-2 text-lg font-bold text-slate-900 hover:text-red-600"
-                  onClick={() => setIsMobileMenuOpen(false)}>
-                  {item.name}
-                </a>
-              ))}
-            </div>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute inset-0 bg-black/35"
+            />
+
+            <motion.aside
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+              className="absolute right-0 top-0 h-full w-[78%] max-w-sm border-l border-red-100 bg-white shadow-2xl"
+            >
+              <div className="flex h-full flex-col p-5">
+                <div className="mb-6 flex items-center justify-between">
+                  <p className="text-base font-black text-slate-900">Menu</p>
+                  <button
+                    type="button"
+                    aria-label="Close drawer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-red-100 bg-red-50 text-slate-900"
+                  >
+                    <X className="h-5 w-5 shrink-0" />
+                  </button>
+                </div>
+
+                <nav className="flex flex-col gap-2">
+                  {navItems.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="rounded-xl px-3 py-3 text-base font-bold text-slate-900 hover:bg-red-50 hover:text-red-600"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </motion.aside>
           </motion.div>
         )}
       </AnimatePresence>

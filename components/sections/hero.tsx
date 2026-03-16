@@ -89,38 +89,53 @@ export function HeroSection() {
                 className="h-auto w-full rounded-[2.5rem] drop-shadow-[0_25px_40px_rgba(220,38,38,0.35)]" 
                 priority 
               />
-            </motion.div>
 
-            {/* Floating Info Cards - Re-positioned for balanced image size */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="absolute top-10 right-2 sm:right-6 lg:right-10 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-3 py-2 flex items-center gap-2 border border-white/20">
-              <Shield className="w-5 h-5 text-blue-600" />
-              <div>
-                <p className="text-[10px] text-gray-500 uppercase font-bold">Certified</p>
-                <p className="text-xs font-bold text-gray-900">Paramedics</p>
-              </div>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.5 }} className="absolute top-20 left-2 sm:left-6 lg:left-10 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-3 py-2 border border-white/20">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Live BPM</p>
-              </div>
-              <div className="flex items-end gap-1">
-                <div className="flex items-end gap-0.5">
-                  {[12, 20, 16, 24, 14].map((h, i) => (
-                    <div key={i} className={`w-1.5 rounded-sm ${i === 3 ? "bg-red-600" : "bg-red-400"}`} style={{ height: `${h}px` }} />
-                  ))}
+              {/* Floating Info Cards - anchored to image wrapper for mobile */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="absolute top-2 -right-2 sm:top-4 sm:-right-8 lg:-right-12 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-2.5 py-2 sm:px-3 sm:py-2 flex items-center gap-2 border border-white/20"
+              >
+                <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+                <div>
+                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase font-bold">Certified</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-gray-900">Paramedics</p>
                 </div>
-                <p className="text-xl font-bold text-gray-900 ml-1">72</p>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} className="absolute bottom-6 left-10 sm:left-20 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg px-3 py-2 flex items-center gap-2 border border-white/20">
-              <Timer className="w-5 h-5 text-green-500" />
-              <div>
-                <p className="text-[10px] text-gray-500 uppercase font-bold">Response</p>
-                <p className="text-xs font-bold text-gray-900">10 Minutes</p>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute top-14 -left-2 sm:top-16 sm:-left-8 lg:-left-12 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-2.5 py-2 sm:px-3 sm:py-2 border border-white/20"
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Live BPM</p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <div className="flex items-end gap-0.5">
+                    {[12, 20, 16, 24, 14].map((h, i) => (
+                      <div key={i} className={`w-1.5 rounded-sm ${i === 3 ? "bg-red-600" : "bg-red-400"}`} style={{ height: `${h}px` }} />
+                    ))}
+                  </div>
+                  <p className="text-lg sm:text-xl font-bold text-gray-900 ml-1">72</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="absolute -bottom-3 left-1/2 -translate-x-1/2 sm:-bottom-4 sm:right-4 sm:left-auto sm:translate-x-0 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg px-2.5 py-2 sm:px-3 sm:py-2 flex items-center gap-2 border border-white/20"
+              >
+                <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
+                <div>
+                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase font-bold">Response</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-gray-900">10 Minutes</p>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>

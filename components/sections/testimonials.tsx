@@ -121,7 +121,7 @@ export function TestimonialsSection() {
   const spreadDeg = isMobile ? 10 : 26;
 
   return (
-    <section className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center landing-section-spacing bg-white">
+    <section className="min-h-fit flex items-center landing-section-spacing bg-white">
       <div className="max-w-7xl mx-auto w-full text-center">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-8 sm:mb-12">Trust From <span className="text-red-600">Every Corner</span></h2>
         

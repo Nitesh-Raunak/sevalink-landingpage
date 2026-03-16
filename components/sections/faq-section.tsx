@@ -17,7 +17,7 @@ export function FAQSection() {
 
   return (
     <section
-      className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center landing-section-spacing"
+      className="min-h-fit flex items-center landing-section-spacing"
       style={{ position: "relative", overflow: "hidden", background: "linear-gradient(135deg, #ffe0e0 0%, #FFF3E0 50%, #ffe8d6 100%)" }}
     >
 

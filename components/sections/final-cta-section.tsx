@@ -22,7 +22,7 @@ export function FinalCTASection() {
   return (
     <section
       ref={ref}
-      className="min-h-fit sm:min-h-[500px] lg:min-h-screen flex items-center justify-center landing-section-spacing"
+      className="min-h-fit flex items-center justify-center landing-section-spacing"
       style={{
         background: "linear-gradient(135deg, #1a0000 0%, #3d0000 40%, #7f1d1d 100%)",
         position: "relative",

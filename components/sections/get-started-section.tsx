@@ -99,7 +99,7 @@ export function GetStartedSection() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center landing-section-spacing"
+      className="flex items-center landing-section-spacing"
       style={{ backgroundColor: "rgb(246, 62, 62)" }}
     >
       <style>{`

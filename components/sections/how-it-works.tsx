@@ -109,7 +109,7 @@ function StepCard({ step, align }: { step: typeof steps[0]; align: "left" | "rig
 
 export default function HowItWorksSection() {
   return (
-    <section className="w-full min-h-fit sm:min-h-[700px] lg:min-h-screen flex items-center landing-section-spacing bg-[#FEF3E2] overflow-hidden">
+    <section className="w-full min-h-fit flex items-center landing-section-spacing bg-[#FEF3E2] overflow-hidden">
       <div className="max-w-6xl mx-auto w-full">
 
         {/* Heading */}

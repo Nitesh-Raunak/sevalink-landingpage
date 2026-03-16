@@ -9,11 +9,11 @@ import Aurora from '../ui/Aurora';
 export function HeroSection() {
   return (
     <section
-      className="relative overflow-hidden flex items-center min-h-fit sm:min-h-screen lg:min-h-[80vh]"
+      className="relative overflow-hidden flex items-center min-h-fit py-8 sm:py-12 lg:py-10"
       style={{ 
         backgroundColor: "#FFF3E0", 
         marginTop: "-80px", 
-        paddingTop: "80px" 
+        paddingTop: "120px" 
       }}
     >
       {/* --- Aurora Background --- */}

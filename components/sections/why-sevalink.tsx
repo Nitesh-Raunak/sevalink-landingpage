@@ -33,7 +33,7 @@ export function WhySevaLink() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-20 px-4 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-fit sm:min-h-[700px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 px-3 sm:px-4 bg-white overflow-hidden">
       <style>{`
         .ws-heading {
           opacity: 0;
@@ -67,26 +67,26 @@ export function WhySevaLink() {
 
       <FloatingMedicalIcons />
 
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-20 w-full">
 
         {/* Left Content */}
         <div className="flex-1 z-10">
-          <h2 className={`ws-heading text-5xl md:text-7xl font-black text-gray-900 mb-10 leading-[0.9] ${visible ? "show" : ""}`}>
+          <h2 className={`ws-heading text-3xl sm:text-5xl lg:text-7xl font-black text-gray-900 mb-6 sm:mb-10 leading-[0.9] ${visible ? "show" : ""}`}>
             Why Choose <br />
             <span className="text-red-600">SevaLink</span>
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
             {points.map((point, i) => (
               <div
                 key={i}
-                className={`ws-card flex items-center gap-4 p-5 rounded-2xl bg-[#FEF3E2] border border-orange-100 group hover:border-red-200 transition-colors shadow-sm ${visible ? "show" : ""}`}
+                className={`ws-card flex items-center gap-3 sm:gap-4 p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-[#FEF3E2] border border-orange-100 group hover:border-red-200 transition-colors shadow-sm ${visible ? "show" : ""}`}
                 style={{ transitionDelay: visible ? `${i * 0.08}s` : "0s" }}
               >
-                <div className="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">
-                  <Check className="text-white" size={18} strokeWidth={4} />
+                <div className="w-7 sm:w-8 h-7 sm:h-8 rounded-lg bg-red-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-200 group-hover:scale-110 transition-transform">
+                  <Check className="text-white sm:w-4.5 sm:h-4.5" size={16} strokeWidth={4} />
                 </div>
-                <span className="font-black text-gray-800 text-[13px] uppercase tracking-tight">
+                <span className="font-black text-gray-800 text-[11px] sm:text-[13px] uppercase tracking-tight">
                   {point}
                 </span>
               </div>
@@ -95,8 +95,8 @@ export function WhySevaLink() {
         </div>
 
         {/* Right Doctor Image */}
-        <div className="flex-1 relative">
-          <div className={`ws-image relative z-10 rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] border-[12px] border-white bg-gray-100 ${visible ? "show" : ""}`}>
+        <div className="flex-1 relative w-full">
+          <div className={`ws-image relative z-10 rounded-2xl sm:rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] border-4 sm:border-[12px] border-white bg-gray-100 ${visible ? "show" : ""}`}>
             <img
               src="/images/doctor.jpg"
               alt="Expert Doctor"

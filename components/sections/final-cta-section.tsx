@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRef, useEffect, useState } from "react";
+import { Ambulance, Phone } from "lucide-react";
 
 const trustPoints = ["No Hidden Charges", "10 Minute Response", "Pan India Coverage"];
 
@@ -23,9 +24,13 @@ export function FinalCTASection() {
       ref={ref}
       style={{
         background: "linear-gradient(135deg, #1a0000 0%, #3d0000 40%, #7f1d1d 100%)",
-        padding: "96px 16px",
+        padding: "clamp(40px, 6vw, 96px) clamp(12px, 4vw, 16px)",
         position: "relative",
         overflow: "hidden",
+        minHeight: "auto",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       {/* Glow blobs */}
@@ -57,7 +62,7 @@ export function FinalCTASection() {
         { left: "15%", top: "75%", size: 20, dur: "13s", delay: "0.5s" },
         { left: "50%", top: "8%", size: 14, dur: "10s", delay: "3s" },
       ].map((p, i) => (
-        <div key={i} className="cta-plus" style={{ left: p.left, top: p.top, animationDuration: p.dur, animationDelay: p.delay, zIndex: 0 }}>
+        <div key={i} className="cta-plus" style={{ left: p.left, top: p.top, animationDuration: p.dur, animationDelay: p.delay, zIndex: 1 }}>
           <svg width={p.size} height={p.size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
             <line x1="12" y1="5" x2="12" y2="19" />
             <line x1="5" y1="12" x2="19" y2="12" />
@@ -72,9 +77,9 @@ export function FinalCTASection() {
         <div style={{
           display: "inline-flex", alignItems: "center", gap: "8px",
           borderRadius: "999px", border: "1px solid rgba(239,68,68,0.4)",
-          background: "rgba(127,29,29,0.4)", padding: "6px 16px",
-          fontSize: "11px", fontWeight: 800, letterSpacing: "3px",
-          textTransform: "uppercase", color: "#fca5a5", marginBottom: "32px",
+          background: "rgba(127,29,29,0.4)", padding: "clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px)",
+          fontSize: "clamp(9px, 2vw, 11px)", fontWeight: 800, letterSpacing: "3px",
+          textTransform: "uppercase", color: "#fca5a5", marginBottom: "clamp(24px, 4vw, 32px)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.5s ease, transform 0.5s ease",
@@ -85,9 +90,9 @@ export function FinalCTASection() {
 
         {/* Heading */}
         <h2 style={{
-          fontSize: "clamp(2rem, 5vw, 3.5rem)",
+          fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
           fontWeight: 900, color: "white",
-          lineHeight: 1.15, marginBottom: "24px",
+          lineHeight: 1.15, marginBottom: "clamp(16px, 3vw, 24px)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(30px)",
           transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
@@ -99,10 +104,10 @@ export function FinalCTASection() {
         {/* Trust Points */}
         <div style={{
           display: "flex", flexWrap: "wrap", justifyContent: "center",
-          gap: "24px", marginBottom: "48px",
+          gap: "clamp(16px, 3vw, 24px)", marginBottom: "clamp(32px, 6vw, 48px)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s",
+          transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
         }}>
           {trustPoints.map((point, i) => (
             <div key={i} style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -114,14 +119,14 @@ export function FinalCTASection() {
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600, fontSize: "14px" }}>{point}</span>
+              <span style={{ color: "rgba(255,255,255,0.9)", fontWeight: 600, fontSize: "clamp(12px, 2vw, 14px)" }}>{point}</span>
             </div>
           ))}
         </div>
 
         {/* Buttons */}
         <div style={{
-          display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "16px",
+          display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "clamp(12px, 2vw, 16px)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s",
@@ -129,31 +134,37 @@ export function FinalCTASection() {
           <Link
             href="/book"
             style={{
-              padding: "16px 32px", background: "#dc2626",
+              padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px)", background: "#dc2626",
               color: "white", fontWeight: 900, borderRadius: "999px",
-              fontSize: "15px", textDecoration: "none",
+              fontSize: "clamp(12px, 2vw, 15px)", textDecoration: "none",
               boxShadow: "0 8px 30px rgba(220,38,38,0.4)",
               transition: "background 0.3s ease, transform 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
             }}
             onMouseEnter={e => (e.currentTarget.style.background = "#b91c1c")}
             onMouseLeave={e => (e.currentTarget.style.background = "#dc2626")}
           >
-            🚑 Book Ambulance Now
+            <Ambulance className="w-5 h-5" /> Book Ambulance Now
           </Link>
           <Link
             href="tel:108"
             style={{
-              padding: "16px 32px",
+              padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px)",
               border: "2px solid rgba(255,255,255,0.3)",
               color: "white", fontWeight: 900, borderRadius: "999px",
-              fontSize: "15px", textDecoration: "none",
+              fontSize: "clamp(12px, 2vw, 15px)", textDecoration: "none",
               backdropFilter: "blur(8px)",
               transition: "border 0.3s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
             }}
             onMouseEnter={e => (e.currentTarget.style.border = "2px solid rgba(255,255,255,0.7)")}
             onMouseLeave={e => (e.currentTarget.style.border = "2px solid rgba(255,255,255,0.3)")}
           >
-            📞 Call 108
+            <Phone className="w-5 h-5" /> Call 108
           </Link>
         </div>
 

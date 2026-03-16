@@ -99,9 +99,9 @@ function StepCard({ step, align }: { step: typeof steps[0]; align: "left" | "rig
         <Icon size={24} color="white" />
       </motion.div>
       <div>
-        <p className="text-[10px] font-black text-red-600 tracking-widest uppercase mb-1">Step {step.id}</p>
-        <h3 className="text-lg font-bold text-gray-900 leading-tight mb-2">{step.title}</h3>
-        <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+        <p className="text-[9px] sm:text-[10px] font-black text-red-600 tracking-widest uppercase mb-1">Step {step.id}</p>
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 leading-tight mb-2">{step.title}</h3>
+        <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{step.description}</p>
       </div>
     </motion.div>
   );
@@ -109,29 +109,29 @@ function StepCard({ step, align }: { step: typeof steps[0]; align: "left" | "rig
 
 export default function HowItWorksSection() {
   return (
-    <section className="w-full py-20 px-4 bg-[#FEF3E2] overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section className="w-full min-h-fit sm:min-h-[700px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 px-3 sm:px-4 bg-[#FEF3E2] overflow-hidden">
+      <div className="max-w-6xl mx-auto w-full">
 
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-[11px] font-black tracking-widest uppercase mb-4">
+          <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-[10px] sm:text-[11px] font-black tracking-widest uppercase mb-3 sm:mb-4">
             How It Works
           </span>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 leading-tight">
             Emergency Help in <span className="text-red-600">4 Simple Steps</span>
           </h2>
         </motion.div>
 
         {/* Grid Layout */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-16">
 
           {/* Left Steps */}
-          <div className="flex flex-col gap-12 w-full max-w-[320px] order-2 lg:order-1">
+          <div className="flex flex-col gap-8 sm:gap-12 w-full max-w-xs sm:max-w-sm lg:max-w-[320px] order-2 lg:order-1">
             <StepCard step={steps[0]} align="right" />
             <StepCard step={steps[1]} align="right" />
           </div>
@@ -145,7 +145,7 @@ export default function HowItWorksSection() {
           >
             <div className="absolute inset-0 bg-red-200/40 blur-[60px] rounded-full -z-10 translate-y-8" />
             {/* Phone frame */}
-            <div className="relative w-[240px] h-[480px] rounded-[40px] border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
+            <div className="relative w-52 sm:w-64 lg:w-[240px] h-96 sm:h-[480px] lg:h-[480px] rounded-3xl sm:rounded-[40px] border-4 sm:border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
               {/* Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-slate-900 rounded-b-2xl z-20" />
               <MapScreen />
@@ -153,7 +153,7 @@ export default function HowItWorksSection() {
           </motion.div>
 
           {/* Right Steps */}
-          <div className="flex flex-col gap-12 w-full max-w-[320px] order-3 lg:order-3">
+          <div className="flex flex-col gap-8 sm:gap-12 w-full max-w-xs sm:max-w-sm lg:max-w-[320px] order-3 lg:order-3">
             <StepCard step={steps[2]} align="left" />
             <StepCard step={steps[3]} align="left" />
           </div>
@@ -161,19 +161,19 @@ export default function HowItWorksSection() {
         </div>
 
         {/* Bottom Dots */}
-        <div className="flex justify-center items-center gap-3 mt-20">
+        <div className="flex justify-center items-center gap-2 sm:gap-3 mt-12 sm:mt-16 lg:mt-20">
           {steps.map((_, i) => (
             <motion.div
               key={i}
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ delay: i * 0.1 }}
-              className="flex items-center gap-3"
+              className="flex items-center gap-2 sm:gap-3"
             >
-              <div className="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] font-black shadow-lg">
+              <div className="w-7 sm:w-8 h-7 sm:h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-[8px] sm:text-[10px] font-black shadow-lg">
                 0{i + 1}
               </div>
-              {i < 3 && <div className="w-8 h-[2px] bg-red-100" />}
+              {i < 3 && <div className="w-6 sm:w-8 h-[2px] bg-red-100" />}
             </motion.div>
           ))}
         </div>

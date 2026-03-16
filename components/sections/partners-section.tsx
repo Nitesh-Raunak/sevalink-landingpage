@@ -68,7 +68,7 @@ const partners = [
 
 export function PartnersSection() {
   return (
-    <section className="py-14 bg-white overflow-hidden">
+    <section className="min-h-fit sm:min-h-[400px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 bg-white overflow-hidden px-3 sm:px-4">
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
@@ -84,28 +84,29 @@ export function PartnersSection() {
         }
       `}</style>
 
-      {/* Heading */}
-      <p className="text-center text-gray-400 text-sm font-semibold uppercase tracking-widest mb-10">
-        Trusted by Leading Hospitals Across India
-      </p>
+      <div className="w-full max-w-7xl mx-auto">
+        {/* Heading */}
+        <p className="text-center text-gray-400 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-8 sm:mb-10">
+          Trusted by Leading Hospitals Across India
+        </p>
 
-      {/* Marquee */}
-      <div className="relative">
-        {/* Left fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        {/* Right fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        {/* Marquee */}
+        <div className="relative">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-        <div className="marquee-track">
-          {/* Duplicate for seamless loop */}
-          {[...partners, ...partners].map(({ Logo }, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center px-10 py-3 mx-2 rounded-2xl bg-gray-50 border border-gray-100 hover:border-red-200 hover:bg-red-50 transition-colors duration-300 shrink-0"
-            >
-              <Logo />
-            </div>
-          ))}
+          <div className="marquee-track">
+            {[...partners, ...partners].map(({ Logo }, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center px-6 sm:px-10 py-2 sm:py-3 mx-1.5 sm:mx-2 rounded-lg sm:rounded-2xl bg-gray-50 border border-gray-100 hover:border-red-200 hover:bg-red-50 transition-colors duration-300 shrink-0"
+              >
+                <Logo />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

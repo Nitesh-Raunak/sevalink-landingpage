@@ -64,39 +64,39 @@ export default function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="w-full py-20 px-4 overflow-hidden"
+      className="w-full min-h-fit sm:min-h-[600px] lg:min-h-screen flex items-center py-8 sm:py-12 lg:py-20 px-3 sm:px-4 overflow-hidden"
       style={{ backgroundColor: "#FFF3E0" }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto w-full">
         {/* Header - Animated like your original */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
-          <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase mb-4 px-5 py-2 rounded-full bg-red-600/10 text-red-600">
+          <span className="inline-block text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase mb-3 sm:mb-4 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-red-600/10 text-red-600">
             Our Services
           </span>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-gray-900 tracking-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-6xl font-black mb-4 sm:mb-6 text-gray-900 tracking-tight leading-tight">
             Everything You Need <span className="text-red-600 italic">in a Crisis</span>
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-500 max-w-2xl mx-auto text-xs sm:text-base lg:text-lg leading-relaxed">
             From dispatch to recovery — SevaLink covers every step of your emergency journey.
           </p>
         </motion.div>
 
         {/* Dynamic Grid - Fixes the layout issue */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 sm:gap-6">
           {/* Top Row: 4 Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {services.slice(0, 4).map((service, i) => (
               <ServiceCard key={i} service={service} index={i} inView={inView} />
             ))}
           </div>
           
           {/* Bottom Row: 3 Cards Centered on Desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:px-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 lg:px-24">
             {services.slice(4).map((service, i) => (
               <ServiceCard key={i + 4} service={service} index={i + 4} inView={inView} />
             ))}

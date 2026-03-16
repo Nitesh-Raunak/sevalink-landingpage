@@ -4,94 +4,128 @@ import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
 
 const faqs = [
-  {
-    q: "What is SevaLink?",
-    a: "SevaLink is an emergency ambulance booking platform that connects patients with the nearest verified ambulance in under 10 minutes. We support BLS, ALS, ICU, and Neonatal ambulance types across India.",
-  },
-  {
-    q: "How do I book an ambulance?",
-    a: "Simply open SevaLink, tap 'Book Ambulance', share your location, and we'll dispatch the nearest ambulance within 60 seconds. You can also call 108 directly for immediate assistance.",
-  },
-  {
-    q: "Is SevaLink available 24/7?",
-    a: "Yes! SevaLink operates 24 hours a day, 7 days a week, 365 days a year — including all holidays and emergencies.",
-  },
-  {
-    q: "Which areas are covered?",
-    a: "We currently operate across major cities including Delhi, Mumbai, Bengaluru, Ahmedabad, Hyderabad, and are rapidly expanding Pan India. Coverage updates are available in the app.",
-  },
-  {
-    q: "How much does it cost?",
-    a: "SevaLink follows transparent pricing with no hidden charges. You'll see the full estimated fare before confirming the booking. Pricing varies by ambulance type and distance.",
-  },
-  {
-    q: "How does family tracking work?",
-    a: "Once an ambulance is dispatched, you receive a live tracking link that you can share with family members. They can track the ambulance and patient in real-time without needing the app.",
-  },
+  { q: "What is SevaLink?", a: "SevaLink is an emergency ambulance booking platform that connects patients with the nearest verified ambulance in under 10 minutes. We support BLS, ALS, ICU, and Neonatal ambulance types across India." },
+  { q: "How do I book an ambulance?", a: "Simply open SevaLink, tap 'Book Ambulance', share your location, and we'll dispatch the nearest ambulance within 60 seconds. You can also call 108 directly for immediate assistance." },
+  { q: "Is SevaLink available 24/7?", a: "Yes! SevaLink operates 24 hours a day, 7 days a week, 365 days a year — including all holidays and emergencies." },
+  { q: "Which areas are covered?", a: "We currently operate across major cities including Delhi, Mumbai, Bengaluru, Ahmedabad, Hyderabad, and are rapidly expanding Pan India." },
+  { q: "How much does it cost?", a: "SevaLink follows transparent pricing with no hidden charges. You'll see the full estimated fare before confirming the booking." },
+  { q: "How does family tracking work?", a: "Once an ambulance is dispatched, you receive a live tracking link that you can share with family members. They can track in real-time without needing the app." },
 ];
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-20 px-4 bg-[#FFF3E0]">
-      <div className="max-w-3xl mx-auto">
+    <section style={{ position: "relative", overflow: "hidden", padding: "80px 16px", background: "linear-gradient(135deg, #ffe0e0 0%, #FFF3E0 50%, #ffe8d6 100%)" }}>
+
+      <style>{`
+        @keyframes faqBlob1 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(40px, -30px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+        @keyframes faqBlob2 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          33% { transform: translate(-30px, 30px) scale(1.08); }
+          66% { transform: translate(25px, -20px) scale(0.97); }
+        }
+        @keyframes faqBlob3 {
+          0%, 100% { transform: translate(0px, 0px) scale(1); }
+          50% { transform: translate(20px, 25px) scale(1.12); }
+        }
+      `}</style>
+
+      {/* Blobs — high opacity so clearly visible */}
+      <div style={{
+        position: "absolute", width: "500px", height: "500px",
+        borderRadius: "50%", top: "-150px", left: "-150px",
+        background: "radial-gradient(circle, rgba(220,38,38,0.45) 0%, rgba(255,205,210,0.3) 50%, transparent 75%)",
+        filter: "blur(50px)",
+        animation: "faqBlob1 12s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 0,
+      }} />
+      <div style={{
+        position: "absolute", width: "450px", height: "450px",
+        borderRadius: "50%", bottom: "-120px", right: "-120px",
+        background: "radial-gradient(circle, rgba(251,146,60,0.4) 0%, rgba(255,237,213,0.25) 50%, transparent 75%)",
+        filter: "blur(50px)",
+        animation: "faqBlob2 15s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 0,
+      }} />
+      <div style={{
+        position: "absolute", width: "350px", height: "350px",
+        borderRadius: "50%", top: "30%", right: "20%",
+        background: "radial-gradient(circle, rgba(220,38,38,0.35) 0%, transparent 70%)",
+        filter: "blur(60px)",
+        animation: "faqBlob3 10s ease-in-out infinite",
+        pointerEvents: "none", zIndex: 0,
+      }} />
+
+      {/* Content */}
+      <div style={{ maxWidth: "768px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
         {/* Heading */}
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-red-100 text-red-600 text-[11px] font-black tracking-widest uppercase mb-4">
+        <div style={{ textAlign: "center", marginBottom: "48px" }}>
+          <span style={{
+            display: "inline-block", padding: "6px 16px", borderRadius: "999px",
+            background: "rgba(220,38,38,0.1)", border: "1px solid rgba(220,38,38,0.25)",
+            color: "#DC2626", fontSize: "11px", fontWeight: 800,
+            letterSpacing: "3px", textTransform: "uppercase", marginBottom: "16px",
+          }}>
             FAQ
           </span>
-          <h2 className="text-3xl md:text-5xl font-black text-gray-900 leading-tight">
-            Frequently Asked <span className="text-red-600">Questions</span>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 900, color: "#111827", lineHeight: 1.2, marginBottom: "12px" }}>
+            Frequently Asked <span style={{ color: "#DC2626" }}>Questions</span>
           </h2>
-          <p className="text-gray-500 mt-4 text-base">
+          <p style={{ color: "#6B7280", fontSize: "14px" }}>
             Everything you need to know about SevaLink
           </p>
         </div>
 
         {/* Accordion */}
-        <div className="flex flex-col gap-3">
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                openIndex === i
-                  ? "border-red-200 bg-white shadow-md shadow-red-50"
-                  : "border-orange-100 bg-white/60 hover:border-red-200"
-              }`}
+              style={{
+                borderRadius: "16px",
+                border: openIndex === i ? "1px solid rgba(220,38,38,0.35)" : "1px solid rgba(220,38,38,0.15)",
+                background: openIndex === i ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.7)",
+                backdropFilter: "blur(12px)",
+                overflow: "hidden",
+                transition: "all 0.3s ease",
+                boxShadow: openIndex === i ? "0 4px 24px rgba(220,38,38,0.1)" : "0 2px 8px rgba(0,0,0,0.04)",
+              }}
             >
-              {/* Question */}
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
+                style={{
+                  width: "100%", display: "flex", alignItems: "center",
+                  justifyContent: "space-between", padding: "20px 24px",
+                  textAlign: "left", gap: "16px", background: "none", border: "none", cursor: "pointer",
+                }}
               >
-                <span className={`font-bold text-base ${openIndex === i ? "text-red-600" : "text-gray-800"}`}>
+                <span style={{ fontWeight: 700, fontSize: "15px", color: openIndex === i ? "#DC2626" : "#111827" }}>
                   {faq.q}
                 </span>
-                <div className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors duration-300 ${
-                  openIndex === i ? "bg-red-600 text-white" : "bg-orange-100 text-red-600"
-                }`}>
+                <div style={{
+                  flexShrink: 0, width: "28px", height: "28px", borderRadius: "50%",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: openIndex === i ? "#DC2626" : "rgba(220,38,38,0.1)",
+                  color: openIndex === i ? "white" : "#DC2626",
+                  transition: "all 0.3s ease",
+                }}>
                   {openIndex === i ? <Minus size={14} strokeWidth={3} /> : <Plus size={14} strokeWidth={3} />}
                 </div>
               </button>
-
-              {/* Answer */}
-              <div
-                style={{
-                  maxHeight: openIndex === i ? "200px" : "0px",
-                  transition: "max-height 0.35s ease",
-                  overflow: "hidden",
-                }}
-              >
-                <p className="px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+              <div style={{ maxHeight: openIndex === i ? "200px" : "0px", overflow: "hidden", transition: "max-height 0.35s ease" }}>
+                <p style={{ padding: "0 24px 20px", color: "#4B5563", fontSize: "14px", lineHeight: 1.7 }}>
                   {faq.a}
                 </p>
               </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

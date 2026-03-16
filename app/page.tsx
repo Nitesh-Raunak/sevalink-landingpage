@@ -8,6 +8,7 @@ import ServicesSection from "@/components/sections/services-section";
 import { ForWhomSection } from "@/components/sections/for-whom";
 import { WhySevaLink } from "@/components/sections/why-sevalink";
 import { TestimonialsSection } from "@/components/sections/testimonials";
+import { GetStartedSection } from "@/components/sections/get-started-section";
 import { PartnersSection } from "@/components/sections/partners-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { FinalCTASection } from "@/components/sections/final-cta-section";
@@ -43,13 +44,16 @@ export default function Home() {
         {/* 7. Social Proof (City-wise Filters) */}
         <TestimonialsSection />
 
-        {/* 8. Trusted Hospital Partners */}
+        {/* 8. Download App CTA */}
+        <GetStartedSection />
+
+        {/* 9. Trusted Hospital Partners */}
         <PartnersSection />
 
-        {/* 9. Frequently Asked Questions */}
+        {/* 10. Frequently Asked Questions */}
         <FAQSection />
 
-        {/* 10. Final CTA */}
+        {/* 11. Final CTA */}
         <FinalCTASection />
       </main>
 

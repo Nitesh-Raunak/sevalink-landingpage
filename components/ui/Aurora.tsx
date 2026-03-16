@@ -213,16 +213,19 @@ export default function Aurora(props: AuroraProps) {
   }, [amplitude]);
 
   return (
-    <div
-      ref={ctnDom}
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
-    />
-  );
+   <div
+    ref={ctnDom}
+    className="aurora-container"
+    style={{
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      minHeight: '100%', // Yeh line add karein
+      zIndex: 0,
+      pointerEvents: 'none',
+      overflow: 'hidden'
+    }}
+  />
+);
 }

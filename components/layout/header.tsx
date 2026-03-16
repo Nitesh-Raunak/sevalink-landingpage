@@ -29,7 +29,7 @@ export const Header = () => {
         <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <motion.a href="/" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+          <motion.a href="/">
             <Image
               src="/assets/brand/sevalink.png"
               alt="SevaLink Logo"

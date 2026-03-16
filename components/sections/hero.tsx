@@ -119,7 +119,7 @@ export function HeroSection() {
               <Timer className="w-5 h-5 text-green-500" />
               <div>
                 <p className="text-[10px] text-gray-500 uppercase font-bold">Response</p>
-                <p className="text-xs font-bold text-gray-900">8 Minutes</p>
+                <p className="text-xs font-bold text-gray-900">10 Minutes</p>
               </div>
             </motion.div>
           </div>

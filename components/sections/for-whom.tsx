@@ -1,6 +1,6 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { HeartPulse, Building2, LayoutGrid, Check } from "lucide-react";
+import { HeartPulse, Building2, LayoutGrid, Check, Home } from "lucide-react";
 
 const audiences = [
   {
@@ -22,6 +22,13 @@ const audiences = [
     icon: LayoutGrid,
     image: "/images/Network_providers.jpg",
     features: ["Multi-vehicle management", "Driver App", "Instant Settlements"],
+    color: "bg-red-600",
+  },
+  {
+    title: "Homecare",
+    icon: Home,
+    image: "/images/doctor.jpg",
+    features: ["Nursing support at home", "Elderly care services", "Post-hospital recovery"],
     color: "bg-red-600",
   },
 ];
@@ -64,11 +71,11 @@ export function ForWhomSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 items-stretch">
           {audiences.map((item, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col h-full"
+              className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -76,7 +83,7 @@ export function ForWhomSection() {
               }}
             >
               {/* Image Header */}
-              <div className="relative h-48 sm:h-64 lg:h-72 w-full">
+              <div className="relative h-48 sm:h-56 w-full flex-shrink-0">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -92,8 +99,8 @@ export function ForWhomSection() {
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-8 flex-grow flex flex-col justify-between">
-                <div className="space-y-3 sm:space-y-4">
+              <div className="p-5 sm:p-8 flex flex-col flex-1">
+                <div className="flex-1 space-y-3 sm:space-y-4">
                   {item.features.map((f, idx) => (
                     <div key={idx} className="flex items-center gap-2 sm:gap-3">
                       <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
@@ -103,7 +110,7 @@ export function ForWhomSection() {
                     </div>
                   ))}
                 </div>
-                <button className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gray-900 text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 transform active:scale-95">
+                <button className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gray-900 text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 transform active:scale-95 flex-shrink-0">
                   Learn More
                 </button>
               </div>

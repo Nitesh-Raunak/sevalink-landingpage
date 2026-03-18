@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Ambulance, HousePlus, MessageCircleHeart, Pill, ArrowRight } from "lucide-react";
+import { Ambulance, HousePlus, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 type ServiceCard = {
@@ -11,6 +12,11 @@ type ServiceCard = {
   description: string;
   icon: LucideIcon;
   iconBg: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  highlights: string[];
+  badge?: string;
+  badgeColor?: string;
 };
 
 const services: ServiceCard[] = [
@@ -21,6 +27,9 @@ const services: ServiceCard[] = [
       "Book an ambulance instantly with real-time tracking and smart hospital matching for faster emergency response.",
     icon: Ambulance,
     iconBg: "from-red-500 to-orange-500",
+    highlights: ["Real-time GPS tracking", "5km response time", "ICU & BLS support"],
+    badge: "Most Requested",
+    badgeColor: "bg-red-100 text-red-700",
   },
   {
     title: "Homecare",
@@ -28,28 +37,37 @@ const services: ServiceCard[] = [
     description:
       "Get medical care at home including nursing support, elderly care, and post-hospital recovery services.",
     icon: HousePlus,
-    iconBg: "from-rose-500 to-red-500",
+    iconBg: "from-emerald-500 to-teal-600",
+    highlights: ["Certified nurses", "Elderly care specialist", "Post-op recovery"],
+    badge: "At Home Care",
+    badgeColor: "bg-emerald-100 text-emerald-700",
   },
   {
-    title: "Teleconsultation",
-    href: "/services/teleconsultation",
-    description:
-      "Consult doctors online for quick medical advice without visiting the hospital.",
-    icon: MessageCircleHeart,
-    iconBg: "from-orange-500 to-amber-500",
-  },
-  {
-    title: "Pharmacy",
-    href: "/services/pharmacy",
-    description: "Order medicines easily and get them delivered to your doorstep.",
-    icon: Pill,
-    iconBg: "from-red-600 to-rose-500",
+    title: "Hospital Appointment",
+    href: "/services/hospital",
+    description: "Book doctor appointments at hospitals and get priority scheduling for faster care.",
+    icon: Calendar,
+    iconBg: "from-purple-500 to-blue-600",
+    highlights: ["Priority booking", "Specialist doctors", "Zero waiting time"],
+    badge: "Schedule Now",
+    badgeColor: "bg-purple-100 text-purple-700",
   },
 ];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
 
 export function ServicesCatalogSection() {
@@ -74,7 +92,7 @@ export function ServicesCatalogSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
 
@@ -85,30 +103,94 @@ export function ServicesCatalogSection() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
               >
-                <Link
-                  href={service.href}
-                  className="group block h-full rounded-3xl border border-orange-200/80 bg-gradient-to-br from-white via-[#fff7ee] to-[#ffe8d0] p-6 shadow-[0_8px_24px_rgba(192,110,60,0.11)] transition-all duration-350 ease-out will-change-transform hover:-translate-y-2 hover:shadow-[0_20px_48px_rgba(192,110,60,0.22)]"
-                >
-                  <div className="flex h-full flex-col">
-                    <div
-                      className={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.iconBg} text-white shadow-lg`}
-                    >
-                      <Icon className="h-7 w-7" />
+                <Link href={service.href}>
+                  <motion.div
+                    className="group relative h-full overflow-hidden rounded-3xl border border-gray-200/60 bg-gradient-to-br from-white via-gray-50/40 to-gray-100/30 p-7 shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out cursor-pointer"
+                    whileHover={{
+                      y: -8,
+                      boxShadow: "0 20px 60px rgba(0,0,0,0.15)",
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Gradient overlay on hover */}
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    {/* Badge */}
+                    {service.badge && (
+                      <div
+                        className={`absolute top-4 right-4 inline-flex items-center rounded-full px-3 py-1 text-xs font-bold tracking-wide ${service.badgeColor} transition-transform duration-300 group-hover:scale-105`}
+                      >
+                        {service.badge}
+                      </div>
+                    )}
+
+                    <div className="relative z-10 flex h-full flex-col">
+                      {/* Icon Section */}
+                      {service.imageSrc ? (
+                        <motion.div
+                          className="relative mb-6 h-36 w-full overflow-hidden rounded-2xl border border-white/70 shadow-md"
+                          whileHover={{ scale: 1.02 }}
+                        >
+                          <Image
+                            src={service.imageSrc}
+                            alt={service.imageAlt ?? `${service.title} image`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent" />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          className={`mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${service.iconBg} text-white shadow-lg shadow-opacity-40 transition-transform duration-300 group-hover:scale-110`}
+                          whileHover={{ rotate: 5 }}
+                        >
+                          <Icon className="h-8 w-8" strokeWidth={1.5} />
+                        </motion.div>
+                      )}
+
+                      {/* Title */}
+                      <h2 className="mb-2 text-xl font-black tracking-tight text-gray-900 transition-colors duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r from-gray-900 to-gray-600">
+                        {service.title}
+                      </h2>
+
+                      {/* Description */}
+                      <p className="mb-5 text-sm leading-relaxed text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
+                        {service.description}
+                      </p>
+
+                      {/* Feature Highlights */}
+                      <div className="mb-6 space-y-2.5 flex-1">
+                        {service.highlights.map((highlight, idx) => (
+                          <motion.div
+                            key={highlight}
+                            className="flex items-start gap-3"
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.05 }}
+                          >
+                            <CheckCircle2 className="h-4.5 w-4.5 flex-shrink-0 mt-0.5 text-green-500 transition-transform duration-300 group-hover:scale-110" />
+                            <span className="text-xs font-semibold text-gray-700 leading-snug">
+                              {highlight}
+                            </span>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      {/* CTA Button */}
+                      <motion.button
+                        className="inline-flex w-fit items-center gap-2.5 rounded-xl bg-gradient-to-r from-gray-900 to-gray-800 px-5 py-3 text-xs font-black uppercase tracking-wide text-white shadow-lg shadow-gray-900/20 transition-all duration-300 group-hover:from-gray-800 group-hover:to-black group-hover:shadow-lg group-hover:shadow-gray-900/30"
+                        whileHover={{ gap: "0.75rem" }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Learn More
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300" />
+                      </motion.button>
                     </div>
-
-                    <h2 className="text-xl font-black tracking-tight text-gray-900">{service.title}</h2>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600">
-                      {service.description}
-                    </p>
-
-                    <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-gray-900 px-4 py-2.5 text-xs font-black uppercase tracking-wider text-white transition-colors duration-300 group-hover:bg-red-600">
-                      Learn More
-                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
-                  </div>
+                  </motion.div>
                 </Link>
               </motion.div>
             );

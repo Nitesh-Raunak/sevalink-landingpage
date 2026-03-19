@@ -162,6 +162,7 @@ const contentItemVariants = {
 
 function ServiceCard({ service, index, inView }: ServiceCardProps) {
   const Icon = service.icon;
+  const MotionIcon = motion(Icon);
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -306,7 +307,7 @@ function ServiceCard({ service, index, inView }: ServiceCardProps) {
               }}
               className="flex items-center justify-center relative z-10"
             >
-              <Icon className="h-8 w-8" style={{ color: iconColor }} />
+              <MotionIcon className="h-8 w-8" style={{ color: iconColor }} />
             </motion.div>
           </motion.div>
 

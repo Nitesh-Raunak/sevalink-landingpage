@@ -88,10 +88,11 @@ export function ServiceHeroSection({
                   src={imageSrc}
                   alt={imageAlt ?? `${title} preview`}
                   fill
-                  className="object-cover"
+                  className="object-cover object-center z-10"
                   priority
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 45vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent z-20" />
               </>
             ) : (
               <div className="absolute inset-0 flex items-center justify-center">

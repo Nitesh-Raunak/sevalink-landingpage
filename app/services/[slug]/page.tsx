@@ -104,7 +104,7 @@ const serviceData: Record<
         "Get the fastest ambulance response in your city. Real-time tracking, smart hospital matching, and trained paramedics ready to help. Book in seconds, save lives in minutes.",
       icon: Ambulance,
       iconBg: "from-red-500 to-orange-500",
-      imageSrc: "/images/5889811436_32ab8f2a07_b.jpg",
+      imageSrc: "/images/ambulance.png",
       imageAlt: "Emergency ambulance ready for response",
       ctaText: "Book Ambulance Now",
     },

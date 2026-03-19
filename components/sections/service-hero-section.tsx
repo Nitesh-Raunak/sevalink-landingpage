@@ -32,8 +32,8 @@ export function ServiceHeroSection({
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_30%,rgba(255,165,120,0.15),transparent_50%),radial-gradient(circle_at_80%_20%,rgba(255,110,110,0.12),transparent_45%),linear-gradient(180deg,#fff8ef_0%,#ffeedc_60%,#ffe7d2_100%)]" />
 
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -80,7 +80,7 @@ export function ServiceHeroSection({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="relative h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200"
+            className="relative h-72 sm:h-80 md:h-96 lg:h-[28rem] w-full rounded-3xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200"
           >
             {imageSrc ? (
               <>

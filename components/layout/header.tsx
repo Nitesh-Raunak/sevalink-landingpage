@@ -1,20 +1,21 @@
 'use client';
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Phone, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+
+const navLinks = [
+  { label: "Services", href: "/services" },
+  { label: "Provider", href: "/provider" },
+];
 
 export const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-
-  const navItems = [
-    { name: "Services", href: "/services" },
-    { name: "Providers", href: "/provider" },
-  ];
 
   const isActivePath = (href: string) => {
     if (!pathname) return false;
@@ -22,119 +23,96 @@ export const Header = () => {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative z-50 transition-all duration-500"
-    >
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200/50">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
-          <motion.a href="/">
+          <Link href="/" className="flex items-center gap-2 group">
             <Image
               src="/assets/brand/sevalink.png"
-              alt="SevaLink Logo"
-              width={90}
-              height={90}
+              alt="SevaLink"
+              width={64}
+              height={64}
               className="object-contain"
               priority
             />
-          </motion.a>
+          </Link>
 
-          {/* Desktop Nav - Visibility Optimized */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 + 0.3 }}
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`px-4 py-2 text-sm font-semibold transition-colors relative group ${
+                  isActivePath(link.href) ? "text-red-600" : "text-gray-700 hover:text-red-600"
+                }`}
               >
-                <Link
-                  href={item.href}
-                  className={`relative block px-5 py-2 text-sm font-black transition-colors group ${
-                    isActivePath(item.href) ? "text-red-600" : "text-slate-950 hover:text-red-600"
-                  }`}
-                >
-                  {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 group-hover:w-3/4 transition-all duration-300 rounded-full" />
-                </Link>
-              </motion.div>
+                {link.label}
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 rounded-full transition-all duration-300 group-hover:w-3/4" />
+              </Link>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* CTA - Desktop */}
+          <div className="hidden md:flex items-center gap-3">
+            <a href="tel:109" className="flex items-center gap-1.5 text-sm font-semibold text-red-600 hover:text-red-700 transition-colors">
+              <Phone className="w-4 h-4" />
+              109
+            </a>
+            <Link href="/book?service=ambulance" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl">
+              Book Ambulance
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
           <button
-            className="lg:hidden inline-flex h-11 w-11 items-center justify-center leading-none rounded-xl bg-white/90 border border-red-100 shadow-sm text-slate-900 hover:bg-white"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Open menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 text-gray-900"
           >
-            <Menu className="h-5 w-5 shrink-0" />
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] lg:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-b border-gray-200 overflow-hidden"
           >
-            <button
-              type="button"
-              aria-label="Close menu"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="absolute inset-0 bg-black/35"
-            />
-
-            <motion.aside
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.32, ease: "easeOut" }}
-              className="absolute right-0 top-0 h-full w-[78%] max-w-sm border-l border-red-100 bg-white shadow-2xl"
-            >
-              <div className="flex h-full flex-col p-5">
-                <div className="mb-6 flex items-center justify-between">
-                  <p className="text-base font-black text-slate-900">Menu</p>
-                  <button
-                    type="button"
-                    aria-label="Close drawer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-red-100 bg-red-50 text-slate-900"
-                  >
-                    <X className="h-5 w-5 shrink-0" />
-                  </button>
-                </div>
-
-                <nav className="flex flex-col gap-2">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={`rounded-xl px-3 py-3 text-base font-bold transition-colors ${
-                        isActivePath(item.href)
-                          ? "bg-red-50 text-red-600"
-                          : "text-slate-900 hover:bg-red-50 hover:text-red-600"
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                </nav>
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`px-3 py-2.5 text-sm font-semibold rounded-lg transition-colors ${
+                    isActivePath(link.href)
+                      ? "text-red-600 bg-red-50"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="flex items-center gap-3 mt-3 pt-3 border-t border-gray-200">
+                <a href="tel:109" className="flex items-center gap-1.5 text-sm font-semibold text-red-600">
+                  <Phone className="w-4 h-4" />
+                  Call 109
+                </a>
+                <Link href="/book?service=ambulance" className="ml-auto px-4 py-2 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors">
+                  Book
+                </Link>
               </div>
-            </motion.aside>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 

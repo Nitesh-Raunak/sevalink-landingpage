@@ -4,9 +4,9 @@ import { ServicesCatalogSection } from "@/components/sections/services-catalog-s
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#FFF3E0" }}>
+    <div className="min-h-screen" style={{ backgroundColor: "#F3F8FF" }}>
       <Header />
-      <main>
+      <main className="scroll-smooth">
         <ServicesCatalogSection />
       </main>
       <Footer />

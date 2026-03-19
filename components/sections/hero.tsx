@@ -3,154 +3,203 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Shield, Ambulance, Phone, Timer } from "lucide-react";
-import Aurora from '../ui/Aurora';
+import { ArrowRight, Phone, MapPin, Clock, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Aurora from "../ui/Aurora";
+
+const stats = [
+  { icon: Clock, value: "< 8 min", label: "Avg Response" },
+  { icon: MapPin, value: "500+", label: "Cities Covered" },
+  { icon: Shield, value: "24/7", label: "Always Available" },
+];
 
 export function HeroSection() {
   return (
-    <section
-      className="relative overflow-hidden flex items-center min-h-fit py-8 sm:py-12 lg:py-10"
-      style={{ 
-        backgroundColor: "#FFF3E0", 
-        marginTop: "-80px", 
-        paddingTop: "120px" 
-      }}
-    >
-      {/* --- Aurora Background --- */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+      {/* Aurora background (light, non-muddy palette) */}
       <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-        <Aurora 
-          colorStops={["#ec7490", "#c44f55", "#bf2222"]} 
-          blend={0.8} 
-          amplitude={1.1} 
-          speed={0.5} 
+        <Aurora
+          colorStops={["#f7a3b5", "#ec7490", "#c44f55"]}
+          blend={0.62}
+          amplitude={0.95}
+          speed={0.48}
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl landing-section-spacing lg:px-8 w-full z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-10">
+      <div className="absolute inset-0 z-0 bg-white/30" />
 
-          {/* Left Content */}
-          <div className="flex-1 flex flex-col items-center text-center lg:items-start lg:text-left w-full">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-6">
-              <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50/50 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-red-600 backdrop-blur-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
-                Available 24/7 Across The Nation
-              </span>
+      {/* Dot pattern overlay */}
+      <div className="absolute inset-0 opacity-[0.03] z-0" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
+        backgroundSize: '32px 32px',
+      }} />
+
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-xl"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200/50 bg-red-50/50 backdrop-blur-sm mb-6"
+            >
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              <span className="text-xs font-semibold text-red-700">Trusted by 10,000+ families</span>
             </motion.div>
 
-            <motion.h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-3 sm:mb-6 text-gray-900">
-              {["Emergency", "Healthcare When", "You Need It Most"].map((line, i) => (
-                <motion.span key={i} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }} className="block">
-                  <motion.span whileHover={{ x: 8 }} transition={{ duration: 0.2 }} className="inline-block cursor-default text-red-600">
-                    {line}
-                  </motion.span>
-                </motion.span>
-              ))}
-            </motion.h1>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-gray-900">
+              Every Second{" "}
+              <span className="text-red-600">Matters</span>
+              <br />
+              In An Emergency
+            </h1>
 
-            <motion.p
+            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-md">
+              Book an ambulance in under 30 seconds. SevaLink connects you to the nearest verified ambulance with real-time tracking.
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.35 }}
+              className="mb-10 flex flex-wrap gap-3"
+            >
+              <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  href="/book?service=ambulance"
+                  className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-xl px-8 text-base font-semibold text-white shadow-[0_14px_30px_rgba(220,38,38,0.35)]"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-red-700" />
+                  <motion.span
+                    aria-hidden
+                    className="absolute -left-16 top-0 h-full w-16 bg-white/25 blur-md"
+                    animate={{ x: [0, 260, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Phone className="h-5 w-5" />
+                    Book Ambulance Now
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </motion.div>
+
+              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.985 }}>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="h-12 rounded-xl border-gray-300 bg-white/80 px-8 text-base font-semibold backdrop-blur-sm hover:bg-white"
+                >
+                  <Link href="/services" className="inline-flex items-center gap-2">
+                    Explore Services
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-slate-950 font-bold text-xs sm:text-sm lg:text-base max-w-xl mb-4 sm:mb-8 leading-relaxed"
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="flex gap-6 sm:gap-8"
             >
-              SevaLink connects patients, hospitals, and ambulance services for faster emergency medical transportation. One click connects you to life-saving care.
-            </motion.p>
-
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.6 }} className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-8">
-              <Link href="/book" className="animated-btn group">
-                <span className="btn-text flex items-center gap-2">
-                  <Ambulance className="w-5 h-5" /> Book Ambulance
-                </span>
-                <span className="btn-circle" />
-                <svg className="arr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" /></svg>
-              </Link>
-              <Link href="tel:108" className="flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 border-2 border-red-600 text-red-600 hover:bg-red-50 font-semibold rounded-full transition-all hover:scale-105 text-xs sm:text-sm lg:text-base">
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5" /> Call 108
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Right — Ambulance Image + Floating Cards */}
-          <div className="flex-1 relative flex items-center justify-center w-full" style={{ minHeight: "450px" }}>
-            
-            {/* Image Container - Balanced Size: max-w-[320px] on large screens */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }} 
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }} 
-              className="relative z-10 w-full max-w-[240px] sm:max-w-[280px] lg:max-w-[320px] px-2"
-            >
-              <Image 
-                src="/images/ambulance.png" 
-                alt="SevaLink Ambulance" 
-                width={500} 
-                height={375} 
-                // Rounded corners and a very deep, smooth red glow shadow
-                className="h-auto w-full rounded-[2.5rem] drop-shadow-[0_25px_40px_rgba(220,38,38,0.35)]" 
-                priority 
-              />
-
-              {/* Floating Info Cards - anchored to image wrapper for mobile */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="absolute top-2 -right-2 sm:top-4 sm:-right-8 lg:-right-12 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-2.5 py-2 sm:px-3 sm:py-2 flex items-center gap-2 border border-white/20"
-              >
-                <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
-                <div>
-                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase font-bold">Certified</p>
-                  <p className="text-[11px] sm:text-xs font-bold text-gray-900">Paramedics</p>
+              {stats.map(({ icon: Icon, value, label }) => (
+                <div key={label} className="flex items-start gap-2.5">
+                  <div className="mt-0.5 w-8 h-8 rounded-lg bg-white/80 backdrop-blur-sm flex items-center justify-center shrink-0 shadow-sm">
+                    <Icon className="w-4 h-4 text-red-600" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-gray-900 leading-tight">{value}</div>
+                    <div className="text-xs text-gray-600">{label}</div>
+                  </div>
                 </div>
-              </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right visual */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative rounded-3xl bg-white/80 backdrop-blur-md border border-white/60 p-8 shadow-2xl">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <Image
+                  src="/images/ambulance.png"
+                  alt="Emergency Ambulance"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-red-100/20 to-orange-100/20" />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50/90 border border-green-200 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs font-semibold text-green-700">ETA: 10 min</span>
+                </div>
+              </div>
 
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="absolute top-14 -left-2 sm:top-16 sm:-left-8 lg:-left-12 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl px-2.5 py-2 sm:px-3 sm:py-2 border border-white/20"
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="absolute -left-6 top-1/3 bg-white/90 backdrop-blur-md border border-white rounded-xl p-3 shadow-lg"
               >
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Live BPM</p>
-                </div>
-                <div className="flex items-end gap-1">
-                  <div className="flex items-end gap-0.5">
-                    {[12, 20, 16, 24, 14].map((h, i) => (
-                      <div key={i} className={`w-1.5 rounded-sm ${i === 3 ? "bg-red-600" : "bg-red-400"}`} style={{ height: `${h}px` }} />
-                    ))}
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                    <MapPin className="w-4 h-4 text-red-600" />
                   </div>
-                  <p className="text-lg sm:text-xl font-bold text-gray-900 ml-1">72</p>
+                  <div>
+                    <div className="text-xs font-semibold text-gray-900">Live Tracking</div>
+                    <div className="text-[10px] text-gray-600">GPS enabled</div>
+                  </div>
                 </div>
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="absolute -bottom-3 left-1/2 -translate-x-1/2 sm:-bottom-4 sm:right-4 sm:left-auto sm:translate-x-0 z-20 bg-white/90 backdrop-blur-md rounded-2xl shadow-lg px-2.5 py-2 sm:px-3 sm:py-2 flex items-center gap-2 border border-white/20"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="absolute -right-4 bottom-1/4 bg-white/90 backdrop-blur-md border border-white rounded-xl p-3 shadow-lg"
               >
-                <Timer className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
-                <div>
-                  <p className="text-[9px] sm:text-[10px] text-gray-500 uppercase font-bold">Response</p>
-                  <p className="text-[11px] sm:text-xs font-bold text-gray-900">10 Minutes</p>
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                    <Shield className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold text-gray-900">Verified</div>
+                    <div className="text-[10px] text-gray-600">All ambulances</div>
+                  </div>
                 </div>
               </motion.div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
-      
-      {/* Animated Button Styles */}
-      <style dangerouslySetInnerHTML={{ __html: `
-        .animated-btn { position: relative; display: flex; align-items: center; gap: 4px; padding: 14px 32px; border: 4px solid transparent; font-size: 15px; background-color: #DC2626; border-radius: 100px; font-weight: 600; color: white; box-shadow: 0 0 0 2px #DC2626; cursor: pointer; overflow: hidden; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); text-decoration: none; }
-        .animated-btn .arr-1 { position: absolute; width: 24px; fill: white; z-index: 9; right: 16px; transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
-        .animated-btn .btn-text { position: relative; z-index: 1; transform: translateX(-12px); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
-        .animated-btn .btn-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; background-color: #b91c1c; border-radius: 50%; opacity: 0; transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
-        .animated-btn:hover .btn-circle { width: 300px; height: 300px; opacity: 1; }
-        .animated-btn:hover .btn-text { transform: translateX(12px); }
-        .animated-btn:hover .arr-1 { right: -25%; opacity: 0; }
-      `}} />
+
+      {/* Bottom emergency bar */}
+      <div className="absolute bottom-0 left-0 right-0 bg-red-50/80 backdrop-blur-sm border-t border-red-100/50 z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-4 text-sm">
+          <Phone className="w-4 h-4 text-red-600" />
+          <span className="text-gray-700 font-medium">Emergency?</span>
+          <a href="tel:108" className="font-bold text-red-600 hover:text-red-700 transition-colors">
+            Call 108 Now
+          </a>
+          <span className="text-gray-300">|</span>
+          <a href="tel:112" className="font-bold text-red-600 hover:text-red-700 transition-colors">
+            Call 112
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

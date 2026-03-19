@@ -61,7 +61,7 @@ export const Footer = () => {
               </p>
             </div>
             <form
-              className="flex w-full max-w-md gap-3"
+              className="flex w-full max-w-md flex-col gap-3 sm:flex-row"
               onSubmit={(e) => { e.preventDefault(); setEmail(''); }}
             >
               <input
@@ -69,11 +69,11 @@ export const Footer = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-2 rounded-lg border border-red-200 bg-white/80 text-gray-900 placeholder-gray-400 focus:outline-none focus:border-red-500"
+                className="w-full flex-1 rounded-lg border border-red-200 bg-white/80 px-4 py-2 text-gray-900 placeholder-gray-400 focus:border-red-500 focus:outline-none"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg flex items-center gap-2 transition-colors"
+                className="w-full rounded-lg bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700 sm:w-auto flex items-center justify-center gap-2"
               >
                 Subscribe <Send className="w-4 h-4" />
               </button>
@@ -89,8 +89,7 @@ export const Footer = () => {
           {/* Brand */}
           <div className="col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/assets/brand/sevalink-f.png" alt="SevaLink Logo" width={90} height={90} className="object-contain" />
-              <span className="text-xl font-bold text-red-500">SevaLink</span>
+              <Image src="/assets/brand/sevalink-f.png" alt="SevaLink Logo" width={130} height={130} className="object-contain" />
             </Link>
             <p className="mb-6 max-w-sm text-gray-700">
               Your trusted healthcare partner for emergencies and everyday wellness.

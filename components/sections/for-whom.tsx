@@ -1,34 +1,39 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import { HeartPulse, Building2, LayoutGrid, Check, Home } from "lucide-react";
 
 const audiences = [
   {
-    title: "Individual & Family",
+    title: "Patient",
     icon: HeartPulse,
     image: "/images/Individuals&Family.jpg",
-    features: ["Book ambulance in 60 seconds", "Family Tracking", "24/7 Support"],
+    features: ["Book ambulance", "Track ambulance", "View hospitals"],
+    href: "/services/patient",
     color: "bg-red-600",
   },
   {
-    title: "Hospital Partner",
+    title: "Driver",
     icon: Building2,
     image: "/images/Hospital_Partners.jpg",
-    features: ["Integrated dispatch system", "Patient Dashboard", "Real-time Records"],
+    features: ["Accept rides", "Manage trips", "Live status updates"],
+    href: "/services/driver",
     color: "bg-red-600",
   },
   {
-    title: "Network Provider",
+    title: "Fleet",
     icon: LayoutGrid,
     image: "/images/Network_providers.jpg",
-    features: ["Multi-vehicle management", "Driver App", "Instant Settlements"],
+    features: ["Manage vehicles", "Track performance", "Monitor drivers"],
+    href: "/services/fleet",
     color: "bg-red-600",
   },
   {
-    title: "Homecare",
+    title: "Hospital / Homecare",
     icon: Home,
     image: "/images/doctor.jpg",
-    features: ["Nursing support at home", "Elderly care services", "Post-hospital recovery"],
+    features: ["Manage bookings", "Patient coordination", "Care team sync"],
+    href: "/services/hospital",
     color: "bg-red-600",
   },
 ];
@@ -73,9 +78,10 @@ export function ForWhomSection() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 items-stretch">
           {audiences.map((item, i) => (
-            <div
+            <Link
               key={i}
-              className="bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col"
+              href={item.href}
+              className="group bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -110,11 +116,11 @@ export function ForWhomSection() {
                     </div>
                   ))}
                 </div>
-                <button className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gray-900 text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 transform active:scale-95 flex-shrink-0">
+                <div className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 text-white font-black text-xs sm:text-sm uppercase tracking-widest group-hover:from-red-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-lg text-center flex-shrink-0">
                   Learn More
-                </button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

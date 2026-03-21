@@ -10,6 +10,7 @@ import {
   Users,
   ArrowRight,
   CheckCircle2,
+  Home,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -116,6 +117,31 @@ const providers: ProviderRole[] = [
     iconBg: "from-red-500 to-orange-500",
     imageSrc: "/images/Network_providers.jpg",
     imageAlt: "Fleet operations dashboard and dispatch planning",
+  },
+  {
+    id: "homecare",
+    eyebrow: "Homecare",
+    title: "Homecare Service",
+    description:
+      "Get professional healthcare services at home including nursing, elderly care, and medical assistance.",
+    requirementsTitle: "Services Provided",
+    requirements: [
+      "Nursing support at home",
+      "Elderly care services",
+      "Post-hospital recovery assistance",
+      "Medical equipment setup",
+    ],
+    benefitsTitle: "Why Choose Homecare",
+    benefits: [
+      "Professional medical care",
+      "Comfort of your home",
+      "Personalized attention",
+    ],
+    ctaText: "Request Service",
+    icon: Home,
+    iconBg: "from-green-600 to-emerald-500",
+    imageSrc: "/images/nurse.webp",
+    imageAlt: "Professional nurse providing homecare assistance",
   },
 ];
 

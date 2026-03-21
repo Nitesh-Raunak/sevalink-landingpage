@@ -24,6 +24,11 @@ const providerDetails: Record<string, ProviderDetail> = {
     summary:
       "Manage multiple ambulances and drivers, accept fallback emergency requests, and grow your ambulance network.",
   },
+  homecare: {
+    title: "Homecare",
+    summary:
+      "Get professional healthcare services at home including nursing, elderly care, and medical assistance. Our homecare service bridges the gap between hospital and home, ensuring you or your loved ones receive the best care in a familiar environment.",
+  },
 };
 
 export default async function ProviderDetailPage({

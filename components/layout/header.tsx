@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Phone, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Phone, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Sheet,
   SheetContent,
@@ -22,10 +20,27 @@ const navLinks = [
 
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+    const isLoggedIn = !!localStorage.getItem("token");
+    setLoggedIn(isLoggedIn);
+  }, [pathname]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    setMobileOpen(false);
+    router.push("/");
+  };
 
   const isActivePath = (href: string) => {
     if (!pathname) return false;
+    if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
@@ -67,22 +82,35 @@ export const Header = () => {
               <Phone className="w-4 h-4" />
               109
             </a>
+            {loggedIn && (
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 text-sm font-semibold hover:bg-gray-50 transition-colors"
+              >
+                Logout
+              </button>
+            )}
             <Link href="/book?service=ambulance" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl">
               Book Ambulance
             </Link>
           </div>
 
           {/* Mobile Toggle */}
+          {mounted && (
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
               <button
                 className="md:hidden p-2 text-gray-900 focus:outline-none"
                 aria-label="Toggle Menu"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-6 h-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[80%] p-0 border-none bg-white">
+            <SheetContent side="right" className="w-[70%] p-0 border-none bg-white">
+              <SheetHeader className="sr-only">
+                <SheetTitle>Navigation Menu</SheetTitle>
+              </SheetHeader>
               <div className="flex flex-col h-full">
                 <div className="p-6 border-b border-gray-100 flex items-center justify-between">
                   <Image
@@ -111,6 +139,15 @@ export const Header = () => {
                   ))}
                   
                   <div className="mt-6 pt-6 border-t border-gray-200 flex flex-col gap-3">
+                    {loggedIn && (
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-800 text-base font-semibold hover:bg-gray-50 transition-all text-left"
+                      >
+                        Logout
+                      </button>
+                    )}
                     <a 
                       href="tel:109" 
                       className="flex items-center gap-2 px-4 py-3 text-base font-semibold text-red-600 rounded-lg hover:bg-red-50 transition-all"
@@ -130,6 +167,7 @@ export const Header = () => {
               </div>
             </SheetContent>
           </Sheet>
+          )}
         </div>
       </div>
     </header>

@@ -8,14 +8,14 @@ import { Button } from "@/components/ui/button";
 import { FloatingMedicalIcons } from "../ui/medical-background";
 
 const stats = [
-  { icon: Clock, value: "< 8 min", label: "Avg Response" },
+  { icon: Clock, value: "10 min", label: "Avg Response" },
   { icon: MapPin, value: "500+", label: "Cities Covered" },
   { icon: Shield, value: "24/7", label: "Always Available" },
 ];
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16">
+    <section className="relative overflow-hidden pt-12 md:pt-14">
       {/* Minimal healthcare background with floating icons */}
       <FloatingMedicalIcons />
 
@@ -27,8 +27,8 @@ export function HeroSection() {
         backgroundSize: '32px 32px',
       }} />
 
-      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 py-8 md:py-10 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -40,20 +40,20 @@ export function HeroSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200/50 bg-red-50/50 backdrop-blur-sm mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-200/50 bg-red-50/50 backdrop-blur-sm mb-5"
             >
               <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
               <span className="text-xs font-semibold text-red-700">Trusted by 10,000+ families</span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 text-gray-900">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-5 text-gray-900">
               Every Second{" "}
               <span className="text-red-600">Matters</span>
               <br />
               In An Emergency
             </h1>
 
-            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-md">
+            <p className="text-lg text-gray-600 leading-relaxed mb-6 max-w-md">
               Book an ambulance in under 30 seconds. SevaLink connects you to the nearest verified ambulance with real-time tracking.
             </p>
 
@@ -61,7 +61,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.35 }}
-              className="mb-10 flex flex-wrap gap-3"
+              className="mb-8 flex flex-wrap gap-3"
             >
               <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.98 }}>
                 <Link
@@ -102,7 +102,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex gap-6 sm:gap-8"
+              className="flex gap-5 sm:gap-6"
             >
               {stats.map(({ icon: Icon, value, label }) => (
                 <div key={label} className="flex items-start gap-2.5">
@@ -180,7 +180,7 @@ export function HeroSection() {
       </div>
 
       {/* Bottom emergency bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-red-50/80 backdrop-blur-sm border-t border-red-100/50 z-10">
+      <div className="bg-red-50/80 backdrop-blur-sm border-t border-red-100/50 z-10 mt-4 md:mt-6">
         <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-4 text-sm">
           <Phone className="w-4 h-4 text-red-600" />
           <span className="text-gray-700 font-medium">Emergency?</span>

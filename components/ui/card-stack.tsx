@@ -90,12 +90,18 @@ export function CardStack<T extends CardStackItem>({
   const [hovering, setHovering] = React.useState(false);
 
   React.useEffect(() => {
-    setActive((a) => wrapIndex(a, len));
-  }, [len]);
+    // Reset active index when items change (e.g., when filtering)
+    if (len > 0) {
+      setActive((a) => wrapIndex(a, len));
+    } else {
+      setActive(0);
+    }
+  }, [len, items]);
 
   React.useEffect(() => {
     if (!len) return;
-    onChangeIndex?.(active, items[active]!);
+    const safeIdx = Math.min(active, len - 1);
+    onChangeIndex?.(safeIdx, items[safeIdx]!);
   }, [active, len, items, onChangeIndex]);
 
   const maxOffset = Math.max(0, Math.floor(maxVisible / 2));
@@ -144,7 +150,8 @@ export function CardStack<T extends CardStackItem>({
 
   if (!len) return null;
 
-  const activeItem = items[active]!;
+  const safeActive = Math.min(active, len - 1);
+  const activeItem = items[safeActive]!;
 
   return (
     <div

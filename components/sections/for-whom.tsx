@@ -1,39 +1,53 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { HeartPulse, Building2, LayoutGrid, Check, Home } from "lucide-react";
 
-const audiences = [
+type Audience = {
+  id: string;
+  title: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  image: string;
+  features: string[];
+  path: string;
+  color: string;
+};
+
+const audiences: Audience[] = [
   {
+    id: "patient",
     title: "Patient",
     icon: HeartPulse,
     image: "/images/Individuals&Family.jpg",
     features: ["Book ambulance", "Track ambulance", "View hospitals"],
-    href: "/services/patient",
+    path: "/services",
     color: "bg-red-600",
   },
   {
+    id: "driver",
     title: "Driver",
     icon: Building2,
     image: "/images/Hospital_Partners.jpg",
     features: ["Accept rides", "Manage trips", "Live status updates"],
-    href: "/services/driver",
+    path: "/provider",
     color: "bg-red-600",
   },
   {
+    id: "fleet",
     title: "Fleet",
     icon: LayoutGrid,
     image: "/images/Network_providers.jpg",
     features: ["Manage vehicles", "Track performance", "Monitor drivers"],
-    href: "/services/fleet",
+    path: "/provider",
     color: "bg-red-600",
   },
   {
+    id: "hospital",
     title: "Hospital / Homecare",
     icon: Home,
     image: "/images/doctor.jpg",
     features: ["Manage bookings", "Patient coordination", "Care team sync"],
-    href: "/services/hospital",
+    path: "/services",
     color: "bg-red-600",
   },
 ];
@@ -41,6 +55,7 @@ const audiences = [
 export function ForWhomSection() {
   const ref = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,6 +65,10 @@ export function ForWhomSection() {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  const handleLearnMore = (path: string) => {
+    router.push(path);
+  };
 
   return (
     <section ref={ref} className="min-h-fit flex items-center landing-section-spacing" style={{ backgroundColor: "#FFF3E0" }}>
@@ -78,10 +97,9 @@ export function ForWhomSection() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8 items-stretch">
           {audiences.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className="group bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
+            <div
+              key={item.id}
+              className="group bg-white rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-xl border border-orange-100/50 flex flex-col cursor-pointer hover:shadow-2xl transition-shadow duration-300"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(30px)",
@@ -116,11 +134,14 @@ export function ForWhomSection() {
                     </div>
                   ))}
                 </div>
-                <div className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 text-white font-black text-xs sm:text-sm uppercase tracking-widest group-hover:from-red-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-lg text-center flex-shrink-0">
+                <button
+                  onClick={() => handleLearnMore(item.path)}
+                  className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 text-white font-black text-xs sm:text-sm uppercase tracking-widest hover:from-red-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex-shrink-0"
+                >
                   Learn More
-                </div>
+                </button>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

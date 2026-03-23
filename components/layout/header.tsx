@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Phone, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   Sheet,
   SheetContent,
@@ -21,22 +21,11 @@ const navLinks = [
 export const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-    const isLoggedIn = !!localStorage.getItem("token");
-    setLoggedIn(isLoggedIn);
-  }, [pathname]);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-    setMobileOpen(false);
-    router.push("/");
-  };
+  }, []);
 
   const isActivePath = (href: string) => {
     if (!pathname) return false;
@@ -82,16 +71,7 @@ export const Header = () => {
               <Phone className="w-4 h-4" />
               109
             </a>
-            {loggedIn && (
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-800 text-sm font-semibold hover:bg-gray-50 transition-colors"
-              >
-                Logout
-              </button>
-            )}
-            <Link href="/book?service=ambulance" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl">
+            <Link href="/services/ambulance" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl">
               Book Ambulance
             </Link>
           </div>
@@ -139,15 +119,6 @@ export const Header = () => {
                   ))}
                   
                   <div className="mt-6 pt-6 border-t border-gray-200 flex flex-col gap-3">
-                    {loggedIn && (
-                      <button
-                        type="button"
-                        onClick={handleLogout}
-                        className="px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-800 text-base font-semibold hover:bg-gray-50 transition-all text-left"
-                      >
-                        Logout
-                      </button>
-                    )}
                     <a 
                       href="tel:109" 
                       className="flex items-center gap-2 px-4 py-3 text-base font-semibold text-red-600 rounded-lg hover:bg-red-50 transition-all"
@@ -156,7 +127,7 @@ export const Header = () => {
                       Call 109
                     </a>
                     <Link 
-                      href="/book?service=ambulance" 
+                      href="/services/ambulance" 
                       className="px-4 py-3 rounded-lg bg-gradient-to-r from-red-600 to-orange-500 text-white text-base font-semibold hover:shadow-lg transition-all text-center"
                       onClick={() => setMobileOpen(false)}
                     >

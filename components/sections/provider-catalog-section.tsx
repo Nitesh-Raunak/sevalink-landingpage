@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Building2,
@@ -64,7 +63,7 @@ const providers: ProviderRole[] = [
     ],
     benefitsTitle: "Benefits",
     benefits: ["Earn per ride", "Flexible working hours", "Continuous demand"],
-    ctaText: "Join as Driver",
+      ctaText: "Join Us",
     icon: Ambulance,
     iconBg: "from-red-500 to-red-600",
     imageSrc: "/images/5889811436_32ab8f2a07_b.jpg",
@@ -88,7 +87,7 @@ const providers: ProviderRole[] = [
       "Dashboard for managing requests",
       "Better emergency coordination",
     ],
-    ctaText: "Join as Hospital",
+      ctaText: "Join Us",
     icon: Building2,
     iconBg: "from-blue-600 to-sky-500",
     imageSrc: "/images/hospital-appointment.webp",
@@ -112,7 +111,7 @@ const providers: ProviderRole[] = [
       "Fallback request system when no individual driver is available",
       "Business growth opportunity",
     ],
-    ctaText: "Join as Fleet Owner",
+      ctaText: "Join Us",
     icon: Users,
     iconBg: "from-red-500 to-orange-500",
     imageSrc: "/images/Network_providers.jpg",
@@ -137,7 +136,7 @@ const providers: ProviderRole[] = [
       "Comfort of your home",
       "Personalized attention",
     ],
-    ctaText: "Request Service",
+      ctaText: "Join Us",
     icon: Home,
     iconBg: "from-green-600 to-emerald-500",
     imageSrc: "/images/nurse.webp",
@@ -261,12 +260,6 @@ function ProviderSectionBlock({
               {provider.ctaText}
               <ArrowRight className="h-4 w-4" />
             </button>
-            <Link
-              href={`/provider/${provider.id}`}
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 bg-white px-6 py-3 text-sm font-black uppercase tracking-wide text-slate-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-red-200 hover:bg-red-50 hover:text-red-600"
-            >
-              View Details
-            </Link>
           </div>
         </div>
       </motion.div>

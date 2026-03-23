@@ -34,7 +34,7 @@ import {
   Star,
   Hospital,
 } from "lucide-react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 type StepType = {
   number: number;
@@ -518,6 +518,7 @@ const serviceData: Record<
 };
 
 export default function ServiceDetailPage() {
+  const router = useRouter();
   const params = useParams();
   const slug = params.slug as string;
   const data = serviceData[slug];
@@ -541,7 +542,11 @@ export default function ServiceDetailPage() {
           imageAlt={data.hero.imageAlt}
           ctaText={data.hero.ctaText}
           ctaAction={() => {
-            alert("Booking feature coming soon!");
+            if (slug === "ambulance") {
+              router.push("/booking/ambulance");
+            } else {
+              router.push("/booking/homecare");
+            }
           }}
         />
 
@@ -578,7 +583,11 @@ export default function ServiceDetailPage() {
           primaryCta={{
             text: data.finalCta.primaryCtaText,
             onClick: () => {
-              alert("Booking feature coming soon!");
+              if (slug === "ambulance") {
+                router.push("/booking/ambulance");
+              } else {
+                router.push("/booking/homecare");
+              }
             },
           }}
           secondaryCta={{

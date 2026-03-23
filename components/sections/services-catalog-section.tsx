@@ -30,7 +30,7 @@ const services: ServiceBlock[] = [
     description:
       "Get immediate ambulance dispatch with live route visibility, trained emergency support, and quick hospital coordination when every minute matters.",
     ctaText: "Book Ambulance Now",
-    ctaHref: "/book?service=ambulance",
+    ctaHref: "/services",
     icon: Ambulance,
     iconBg: "from-red-500 to-red-600",
     imageSrc: "/images/5889811436_32ab8f2a07_b.jpg",
@@ -50,7 +50,7 @@ const services: ServiceBlock[] = [
     description:
       "Bring professional medical care to your doorstep with qualified nurses, assisted daily routines, and personalized recovery support for families.",
     ctaText: "Book Homecare",
-    ctaHref: "/book?service=homecare",
+    ctaHref: "/services",
     icon: HousePlus,
     iconBg: "from-blue-500 to-cyan-500",
     imageSrc: "/images/family-service.webp",
@@ -71,7 +71,7 @@ const services: ServiceBlock[] = [
     description:
       "Find the right specialist quickly, compare availability, and reserve priority slots for faster diagnosis and treatment without long waiting lines.",
     ctaText: "Book Appointment",
-    ctaHref: "/book?service=hospital",
+    ctaHref: "/services",
     icon: Calendar,
     iconBg: "from-blue-600 to-sky-500",
     imageSrc: "/images/hospital-appointment.webp",
@@ -163,7 +163,7 @@ function ServiceShowcaseBlock({
 
           <Link
             href={service.ctaHref}
-            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_25px_rgba(220,38,38,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-700"
+            className="mt-7 inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_25px_rgba(220,38,38,0.35)]"
           >
             {service.ctaText}
             <ArrowRight className="h-4 w-4" />

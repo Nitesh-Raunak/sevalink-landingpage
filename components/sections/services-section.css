@@ -1,0 +1,35 @@
+/* Base: keep text and icons fully visible, only animate card shell */
+.service-card {
+  transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Mobile: active card gets pink highlight while scrolling */
+@media (max-width: 768px) {
+  .service-card--active {
+    background-color: rgba(252, 165, 165, 0.5);
+    transform: scale(1.02);
+    box-shadow: 0 10px 24px rgba(239, 68, 68, 0.12);
+  }
+
+  .service-card--inactive {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Desktop: color changes only on hover */
+@media (min-width: 769px) {
+  .service-card--active,
+  .service-card--inactive {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .service-card:hover {
+    background-color: rgba(252, 165, 165, 0.45);
+    box-shadow: 0 10px 24px rgba(239, 68, 68, 0.12);
+  }
+}
+

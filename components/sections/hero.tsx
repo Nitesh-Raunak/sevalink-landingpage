@@ -65,7 +65,7 @@ export function HeroSection() {
             >
               <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/book?service=ambulance"
+                  href="/booking/ambulance"
                   className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-xl px-8 text-base font-semibold text-white shadow-[0_14px_30px_rgba(220,38,38,0.35)]"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-red-700" />

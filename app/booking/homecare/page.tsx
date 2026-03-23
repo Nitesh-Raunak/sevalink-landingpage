@@ -1,13 +1,10 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { FormEvent, useState } from "react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
 export default function HomecareBookingPage() {
-  const router = useRouter();
-  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [patientName, setPatientName] = useState("");
   const [patientPhone, setPatientPhone] = useState("");
   const [serviceAddress, setServiceAddress] = useState("");
@@ -15,27 +12,10 @@ export default function HomecareBookingPage() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      router.replace("/login");
-      return;
-    }
-
-    setIsCheckingAuth(false);
-  }, [router]);
-
   async function handleBookingSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSuccessMessage("");
     setErrorMessage("");
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.replace("/login");
-      return;
-    }
 
     setIsSubmitting(true);
 
@@ -44,7 +24,7 @@ export default function HomecareBookingPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          // Removed Authorization header as per requirements to remove authentication
         },
         body: JSON.stringify({
           patientName: patientName.trim(),
@@ -75,14 +55,6 @@ export default function HomecareBookingPage() {
     } finally {
       setIsSubmitting(false);
     }
-  }
-
-  if (isCheckingAuth) {
-    return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#FFF3E0" }}>
-        <p className="text-sm font-semibold text-gray-600">Checking access...</p>
-      </div>
-    );
   }
 
   return (

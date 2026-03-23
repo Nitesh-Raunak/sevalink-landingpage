@@ -13,13 +13,6 @@ export default function PatientServicePage() {
   };
 
   const handleBookHomecareOrHospital = () => {
-    const isLoggedIn = false;
-
-    if (!isLoggedIn) {
-      router.push("/login");
-      return;
-    }
-
     router.push("/booking/homecare");
   };
 

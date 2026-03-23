@@ -8,7 +8,6 @@ import {
   Hospital,
   Users,
   CreditCard,
-  Headphones,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import "./services-section.css";
@@ -63,20 +62,6 @@ const services: ServiceItem[] = [
     description: "No hidden charges. Know the cost before ambulance arrives.",
     iconBg: "bg-cyan-50",
     iconText: "text-cyan-600",
-  },
-  {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Round-the-clock helpline for all emergency queries.",
-    iconBg: "bg-pink-50",
-    iconText: "text-pink-600",
-  },
-  {
-    icon: Users,
-    title: "Community Network",
-    description: "Verified community first-responders for hyper-local aid.",
-    iconBg: "bg-indigo-50",
-    iconText: "text-indigo-600",
   },
 ];
 

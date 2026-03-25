@@ -54,7 +54,7 @@ const providers: ProviderRole[] = [
     ],
     benefitsTitle: "Benefits",
     benefits: ["Earn per ride", "Flexible working hours", "Continuous demand"],
-    ctaText: "Join as Driver",
+    ctaText: "Join Us",
     formUrl: PROVIDER_FORM_LINKS.driverFleet,
     icon: Ambulance,
     iconBg: "from-red-500 to-red-600",
@@ -79,7 +79,7 @@ const providers: ProviderRole[] = [
       "Dashboard for managing requests",
       "Better emergency coordination",
     ],
-    ctaText: "Get Started",
+    ctaText: "Join Us",
     formUrl: PROVIDER_FORM_LINKS.hospital,
     icon: Building2,
     iconBg: "from-blue-600 to-sky-500",
@@ -104,7 +104,7 @@ const providers: ProviderRole[] = [
       "Fallback request system when no individual driver is available",
       "Business growth opportunity",
     ],
-    ctaText: "Join as Fleet Partner",
+    ctaText: "Join Us",
     formUrl: PROVIDER_FORM_LINKS.driverFleet,
     icon: Users,
     iconBg: "from-red-500 to-orange-500",
@@ -130,7 +130,7 @@ const providers: ProviderRole[] = [
       "Comfort of your home",
       "Personalized attention",
     ],
-    ctaText: "Join as Home Care Provider",
+    ctaText: "Join Us",
     formUrl: PROVIDER_FORM_LINKS.homecare,
     icon: Home,
     iconBg: "from-green-600 to-emerald-500",
@@ -262,7 +262,7 @@ function ProviderSectionBlock({
           <div className="mt-7 flex flex-wrap gap-4">
             <a
               href={provider.formUrl}
-              className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_25px_rgba(220,38,38,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-700"
+              className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-black uppercase tracking-wide !text-white hover:!text-white active:!text-white shadow-[0_10px_25px_rgba(220,38,38,0.35)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-700"
             >
               {provider.ctaText}
               <ArrowRight className="h-4 w-4" />

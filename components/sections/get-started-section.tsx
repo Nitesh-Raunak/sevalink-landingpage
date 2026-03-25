@@ -163,10 +163,10 @@ export function GetStartedSection() {
       <div className="max-w-7xl mx-auto w-full">
         <div className="text-center mb-8 sm:mb-10">
           <h2
-            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black !text-white tracking-tight"
             style={{ textShadow: "0 8px 24px rgba(0, 0, 0, 0.35)" }}
           >
-            Get Started
+            Join Us
           </h2>
         </div>
 

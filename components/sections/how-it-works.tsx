@@ -25,9 +25,9 @@ function MapScreen() {
   ];
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-2xl bg-gray-100">
+    <div className="relative isolate w-full h-full overflow-hidden rounded-2xl bg-gray-100">
       {/* Top overlays - always visible above map layers */}
-      <div className="absolute top-2 left-2 right-2 z-[1100] flex items-center pointer-events-none">
+      <div className="absolute top-2 left-2 right-2 z-20 flex items-center pointer-events-none">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-white/50 px-3 py-1.5 shadow-lg shadow-black/10 backdrop-blur-sm">
           <motion.div
             className="w-1.5 h-1.5 rounded-full bg-red-600"
@@ -54,7 +54,7 @@ function MapScreen() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="absolute bottom-0 left-0 right-0 p-3 bg-white/97 backdrop-blur-sm border-t border-gray-100 z-[1100]"
+        className="absolute bottom-0 left-0 right-0 p-3 bg-white/97 backdrop-blur-sm border-t border-gray-100 z-20"
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -140,13 +140,13 @@ export default function HowItWorksSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative order-1 lg:order-2"
+            className="relative z-0 order-1 lg:order-2"
           >
             <div className="absolute inset-0 bg-red-200/40 blur-[60px] rounded-full -z-10 translate-y-8" />
             {/* Phone frame */}
-            <div className="relative w-52 sm:w-64 lg:w-[240px] h-96 sm:h-[480px] lg:h-[480px] rounded-3xl sm:rounded-[40px] border-4 sm:border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
+            <div className="relative isolate z-0 w-52 sm:w-64 lg:w-[240px] h-96 sm:h-[480px] lg:h-[480px] rounded-3xl sm:rounded-[40px] border-4 sm:border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
               {/* Camera notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 z-[1200]">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
                 <div className="w-16 h-3 bg-black rounded-b-xl flex items-center justify-center">
                   <div className="w-2 h-2 bg-gray-500 rounded-full" />
                 </div>

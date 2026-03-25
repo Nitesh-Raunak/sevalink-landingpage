@@ -1,8 +1,9 @@
 'use client';
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, MapPin, Clock, Shield } from "lucide-react";
+import { ArrowRight, MapPin, Clock, Shield, Download } from "lucide-react";
 import { FloatingMedicalIcons } from "../ui/medical-background";
 
 const stats = [
@@ -12,8 +13,33 @@ const stats = [
 ];
 
 export function HeroSection() {
-  const handleScrollToServices = () => {
-    document.getElementById("services")?.scrollIntoView({
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [canUseParallax, setCanUseParallax] = useState(false);
+
+  useEffect(() => {
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setCanUseParallax(isFinePointer && isDesktop && !prefersReducedMotion);
+  }, []);
+
+  const handleCardPointerMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canUseParallax) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const maxTilt = 6;
+
+    setTilt({
+      x: (0.5 - py) * maxTilt,
+      y: (px - 0.5) * maxTilt,
+    });
+  };
+
+  const resetCardTilt = () => setTilt({ x: 0, y: 0 });
+
+  const handleScrollToAppDownload = () => {
+    document.getElementById("get-started")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -71,19 +97,19 @@ export function HeroSection() {
               <motion.div whileHover={{ y: -3, scale: 1.01 }} whileTap={{ scale: 0.98 }}>
                 <button
                   type="button"
-                  onClick={handleScrollToServices}
+                  onClick={handleScrollToAppDownload}
                   className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-xl px-8 text-base font-semibold text-white shadow-[0_14px_30px_rgba(220,38,38,0.35)]"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-red-700" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-500 to-red-700 transition-colors duration-200 group-hover:from-red-700 group-hover:via-red-600 group-hover:to-red-800" />
                   <motion.span
                     aria-hidden
                     className="absolute -left-16 top-0 h-full w-16 bg-white/25 blur-md"
                     animate={{ x: [0, 260, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   />
-                  <span className="relative z-10 inline-flex items-center gap-2">
-                    <Phone className="h-5 w-5" />
-                    Book Ambulance
+                  <span className="relative z-10 inline-flex items-center gap-2 text-white">
+                    <Download className="h-5 w-5" />
+                    Install App
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </button>
@@ -112,12 +138,43 @@ export function HeroSection() {
 
           {/* Right visual */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative rounded-3xl bg-white/80 backdrop-blur-md border border-white/60 p-5 md:p-8 shadow-2xl">
+            {/* Soft ambient AI-style glow pulse */}
+            <motion.div
+              aria-hidden
+              className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_45%,rgba(239,68,68,0.24),rgba(239,68,68,0)_68%)] blur-2xl"
+              animate={{ opacity: [0.45, 0.75, 0.45], scale: [0.96, 1.04, 0.96] }}
+              transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+
+            <motion.div
+              onMouseMove={handleCardPointerMove}
+              onMouseLeave={resetCardTilt}
+              animate={{
+                y: [0, -10, 0],
+                rotateX: tilt.x,
+                rotateY: tilt.y,
+              }}
+              transition={{
+                y: { duration: 3.6, repeat: Infinity, ease: "easeInOut" },
+                rotateX: { duration: 0.2, ease: "easeOut" },
+                rotateY: { duration: 0.2, ease: "easeOut" },
+              }}
+              style={{ transformStyle: "preserve-3d", willChange: "transform" }}
+              className="relative rounded-3xl bg-white/80 backdrop-blur-md border border-white/60 p-5 md:p-8 shadow-2xl"
+            >
+              {/* Very subtle premium light sweep */}
+              <motion.div
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                animate={{ x: ["-10%", "175%"] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", repeatDelay: 1.5 }}
+              />
+
               <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
                 <Image
                   src="/images/ambulance.png"
@@ -140,7 +197,13 @@ export function HeroSection() {
                 className="absolute -left-6 top-1/3 bg-white/90 backdrop-blur-md border border-white rounded-xl p-3 shadow-lg hidden md:block"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                  <div className="relative w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                    <motion.span
+                      aria-hidden
+                      className="absolute inset-0 rounded-full bg-red-400/45"
+                      animate={{ scale: [1, 1.75], opacity: [0.55, 0] }}
+                      transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                    />
                     <MapPin className="w-4 h-4 text-red-600" />
                   </div>
                   <div>
@@ -166,23 +229,8 @@ export function HeroSection() {
                   </div>
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom emergency bar */}
-      <div className="bg-red-50/80 backdrop-blur-sm border-t border-red-100/50 z-10 mt-4 md:mt-6">
-        <div className="container mx-auto px-4 sm:px-6 py-3 flex items-center justify-center gap-4 text-sm">
-          <Phone className="w-4 h-4 text-red-600" />
-          <span className="text-gray-700 font-medium">Emergency?</span>
-          <a href="tel:108" className="hover-link font-bold text-red-600 transition-colors">
-            Call 108 Now
-          </a>
-          <span className="text-gray-300">|</span>
-          <a href="tel:112" className="hover-link font-bold text-red-600 transition-colors">
-            Call 112
-          </a>
         </div>
       </div>
     </section>

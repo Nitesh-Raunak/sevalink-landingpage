@@ -1,7 +1,6 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero";
-import StatsSection from "@/components/sections/stats-section";
 import HowItWorksSection from "@/components/sections/how-it-works";
 import ServicesSection from "@/components/sections/services-section";
 import { ForWhomSection } from "@/components/sections/for-whom";
@@ -21,9 +20,6 @@ export default function Home() {
       <main>
         {/* 1. Main Banner */}
         <HeroSection />
-
-        {/* 2. Trust Indicators & Numbers */}
-        <StatsSection />
 
         {/* 3. Detailed Services (Neon/Animated Cards) */}
         <ServicesSection />

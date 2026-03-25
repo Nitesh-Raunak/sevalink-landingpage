@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp, Activity, Shield, Lock } from 'lucide-react';
+import { MapPin, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://linkedin.com/company/sevalink', label: 'LinkedIn' },
@@ -33,12 +33,6 @@ const footerLinks = {
   ],
 };
 
-const trustItems = [
-  { icon: Activity, label: "Real-time tracking" },
-  { icon: Shield, label: "Verified providers" },
-  { icon: Lock, label: "Secure data" },
-];
-
 export const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -46,45 +40,8 @@ export const Footer = () => {
 
   return (
     <footer className="bg-[#0A0A0A] text-[#E0E0E0]">
-      {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border-y border-white/5 py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">
-              Need urgent help?
-            </h2>
-            <p className="text-lg text-gray-300 mb-8">
-              Fast, reliable medical coordination — available now.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div whileHover={{ y: -3, scale: 1.03 }}>
-                <button
-                  className="px-8 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-all duration-300 inline-block text-center shadow-lg hover:shadow-red-900/60 hover:shadow-2xl"
-                >
-                  Request Ambulance
-                </button>
-              </motion.div>
-              <motion.div whileHover={{ y: -3, scale: 1.03 }}>
-                <button
-                  className="px-8 py-3 border border-white/30 hover:border-white/50 hover:bg-white/5 text-white font-semibold rounded-lg transition-all duration-300 inline-block text-center"
-                >
-                  Book Homecare
-                </button>
-              </motion.div>
-              <motion.div whileHover={{ y: -3, scale: 1.03 }}>
-                <button
-                  className="px-8 py-3 border border-white/30 hover:border-white/50 hover:bg-white/5 text-white font-semibold rounded-lg transition-all duration-300 inline-block text-center"
-                >
-                  Book Appointment
-                </button>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
-      <div className="pt-20 pb-10 border-b border-white/5">
+      <div className="pt-16 md:pt-20 pb-10 border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20 mb-16">
             
@@ -96,7 +53,7 @@ export const Footer = () => {
                   alt="SevaLink Icon" 
                   width={80} 
                   height={80} 
-                  className="h-30 w-30 object-cover transition-all duration-300 hover:scale-[1.03]"
+                  className="h-30 w-30 object-cover transition-opacity duration-300"
                 />
               </Link>
               <p className="text-sm text-gray-300 mb-8 leading-relaxed line-clamp-4 transition-colors duration-300">
@@ -156,32 +113,13 @@ export const Footer = () => {
               </ul>
             </div>
           </div>
-
-          {/* Trust Section */}
-          <div className="py-14 border-t border-white/15 mt-6">
-            <div className="flex flex-col md:flex-row gap-12 md:gap-20 justify-center md:justify-start">
-              {trustItems.map((item) => (
-                <motion.div 
-                  key={item.label} 
-                  className="flex items-center gap-5 group cursor-pointer transition-all duration-300"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                >
-                  <div className="flex-shrink-0">
-                    <item.icon className="w-7 h-7 text-cyan-300 transition-all duration-300 group-hover:text-cyan-100 group-hover:drop-shadow-lg group-hover:scale-110" />
-                  </div>
-                  <span className="text-sm text-gray-300 group-hover:text-white transition-all duration-300 font-semibold">{item.label}</span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
       <div className="py-14 border-t border-white/15 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-10">
             <motion.div 
               className="text-center md:text-left transition-all duration-300"
               initial={{ opacity: 0 }}
@@ -195,16 +133,16 @@ export const Footer = () => {
                 Made for faster emergency response in India
               </p>
             </motion.div>
-            <div className="flex items-center gap-6 text-xs text-gray-400 transition-all duration-300">
-              <Link href="/privacy-policy" className="hover-link transition-all duration-300 hover:translate-x-0.5">Privacy Policy</Link>
-              <span className="w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
-              <Link href="/terms-and-conditions" className="hover-link transition-all duration-300 hover:translate-x-0.5">Terms & Conditions</Link>
-              <span className="w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
-              <Link href="/refund-policy" className="hover-link transition-all duration-300 hover:translate-x-0.5">Refund Policy</Link>
-              <span className="w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
+            <div className="mt-2 md:mt-0 w-full md:w-auto flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs text-gray-400 text-center transition-all duration-300">
+              <Link href="/privacy-policy" className="hover-link whitespace-nowrap transition-all duration-300 hover:translate-x-0.5">Privacy Policy</Link>
+              <span className="hidden sm:block w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
+              <Link href="/terms-and-conditions" className="hover-link whitespace-nowrap transition-all duration-300 hover:translate-x-0.5">Terms & Conditions</Link>
+              <span className="hidden sm:block w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
+              <Link href="/refund-policy" className="hover-link whitespace-nowrap transition-all duration-300 hover:translate-x-0.5">Refund Policy</Link>
+              <span className="hidden sm:block w-1 h-1 bg-gray-700 rounded-full transition-all duration-300"></span>
               <motion.button 
                 onClick={scrollToTop}
-                className="hover:text-white text-gray-400 transition-all duration-300 flex items-center gap-2 group font-semibold hover:gap-3"
+                className="mt-1 sm:mt-0 hover:text-white text-gray-400 transition-all duration-300 flex items-center gap-2 group font-semibold hover:gap-3"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >

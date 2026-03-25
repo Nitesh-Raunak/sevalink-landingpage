@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { Phone, Menu } from "lucide-react";
+import { Ambulance, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -40,7 +40,7 @@ export const Header = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group cursor-pointer">
             <Image
-              src="/assets/brand/SevaLink-logo.png"
+              src="/assets/brand/SevaLink-logo-r.png"
               alt="SevaLink"
               width={240}
               height={56}
@@ -66,10 +66,13 @@ export const Header = () => {
 
           {/* CTA - Desktop */}
           <div className="hidden md:flex items-center">
-            <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none">
-              <Phone className="w-4 h-4" />
-              Call 108
-            </button>
+            <Link
+              href="/#services"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
+            >
+              <Ambulance className="w-4 h-4" />
+              Book Ambulance
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -115,13 +118,14 @@ export const Header = () => {
                   ))}
                   
                   <div className="mt-6 pt-6 border-t border-gray-200 flex flex-col gap-3">
-                    <button 
-                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-red-600 text-white text-base font-semibold hover:bg-red-700 hover:shadow-lg transition-all text-center cursor-pointer border-none"
+                    <Link
+                      href="/#services"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-red-600 !text-white visited:!text-white hover:!text-white active:!text-white text-base font-semibold hover:bg-red-700 hover:shadow-lg transition-all text-center cursor-pointer border-none"
                       onClick={() => setMobileOpen(false)}
                     >
-                      <Phone className="w-5 h-5" />
-                      Call 108
-                    </button>
+                      <Ambulance className="w-5 h-5" />
+                      Book Ambulance
+                    </Link>
                   </div>
                 </nav>
               </div>

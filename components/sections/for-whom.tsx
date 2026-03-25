@@ -66,7 +66,12 @@ export function ForWhomSection() {
   }, []);
 
   return (
-    <section ref={ref} className="min-h-fit flex items-center landing-section-spacing" style={{ backgroundColor: "#FFF3E0" }}>
+    <section
+      id="for-whom"
+      ref={ref}
+      className="min-h-fit flex items-center landing-section-spacing scroll-mt-24"
+      style={{ backgroundColor: "#FFF3E0" }}
+    >
       <div className="max-w-7xl mx-auto w-full">
 
         {/* Heading */}
@@ -82,10 +87,11 @@ export function ForWhomSection() {
             Who We Serve
           </span>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
-            Built for <span className="text-red-600">Every Emergency</span>
+            Built for{" "}
+            <span className="text-red-600">Every Emergency</span>
           </h2>
           <p className="text-gray-500 mt-3 sm:mt-4 text-xs sm:text-base lg:text-lg max-w-xl mx-auto">
-            Whether you're an individual, a hospital, or an ambulance provider — SevaLink has a solution for you.
+            Whether you're an individual, a hospital, or an ambulance provider, SevaLink has a solution for you.
           </p>
         </div>
 
@@ -131,7 +137,7 @@ export function ForWhomSection() {
                 </div>
                 <Link
                   href={item.href}
-                  className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-600 to-red-500 text-white font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center flex-shrink-0 transition-all hover:text-red-100 hover:underline hover:bg-red-700 cursor-pointer"
+                  className="w-full mt-6 sm:mt-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-red-600 !text-white visited:!text-white font-black text-xs sm:text-sm uppercase tracking-widest flex items-center justify-center flex-shrink-0 transition-colors hover:bg-red-700 hover:!text-white active:!text-white cursor-pointer"
                 >
                   Learn More
                 </Link>

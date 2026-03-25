@@ -98,6 +98,7 @@ export function GetStartedSection() {
 
   return (
     <section
+      id="get-started"
       ref={sectionRef}
       className="flex items-center landing-section-spacing"
       style={{ backgroundColor: "rgb(246, 62, 62)" }}
@@ -176,13 +177,6 @@ export function GetStartedSection() {
             className="gs-content text-white"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? "translateY(0)" : "translateY(30px)" }}
           >
-            {/* Badge */}
-            <div className="inline-block px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm mb-6">
-              <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-white">
-                📱 Download Now
-              </span>
-            </div>
-
             {/* Heading */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
               Get Emergency Help in <span className="text-yellow-300">Seconds</span>

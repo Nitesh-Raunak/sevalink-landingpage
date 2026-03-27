@@ -56,9 +56,9 @@ export const Footer = () => {
                 <Image 
                   src="/assets/brand/SevaLink-logo-r.png" 
                   alt="SevaLink" 
-                  width={480} 
-                  height={130} 
-                  className="h-28 sm:h-32 md:h-36 w-auto object-contain"
+                  width={520} 
+                  height={140} 
+                  className="h-28 sm:h-32 md:h-44 w-auto object-contain"
                 />
               </Link>
               <p className="text-sm text-black mb-8 leading-relaxed line-clamp-4 transition-colors duration-300 hover:text-red-600">

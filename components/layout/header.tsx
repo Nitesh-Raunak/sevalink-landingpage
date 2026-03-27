@@ -42,9 +42,9 @@ export const Header = () => {
             <Image
               src="/assets/brand/SevaLink-logo-r.png"
               alt="SevaLink"
-              width={400}
-              height={100}
-              className="h-[5.5rem] sm:h-20 md:h-20 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
+              width={440}
+              height={110}
+              className="h-[5.5rem] sm:h-20 md:h-28 w-auto object-contain transition-all duration-300"
               priority
             />
           </Link>

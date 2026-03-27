@@ -12,7 +12,7 @@ type ServiceModeToggleProps = {
 export function ServiceModeToggle({ activeTab, onChange }: ServiceModeToggleProps) {
 
   return (
-    <section className="pt-20 sm:pt-28 mb-1 sm:mb-4">
+    <section className="pt-24 sm:pt-32 mb-1 sm:mb-4">
       <div className="container mx-auto px-4 sm:px-6 flex justify-center">
         <div className="relative inline-grid grid-cols-2 items-center rounded-full border border-gray-200/70 bg-white/90 p-1.5 shadow-md backdrop-blur-sm">
           <span

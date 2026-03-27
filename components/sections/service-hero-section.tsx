@@ -32,7 +32,7 @@ export function ServiceHeroSection({
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_30%,rgba(255,165,120,0.15),transparent_50%),radial-gradient(circle_at_80%_20%,rgba(255,110,110,0.12),transparent_45%),linear-gradient(180deg,#fff8ef_0%,#ffeedc_60%,#ffe7d2_100%)]" />
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 sm:pt-20 sm:py-12 lg:px-8 lg:pt-32 lg:py-24">
         <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left Content */}
           <motion.div

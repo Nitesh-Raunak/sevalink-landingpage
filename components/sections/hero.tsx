@@ -58,7 +58,7 @@ export function HeroSection({ mode = "emergency" }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative overflow-hidden mt-0 pt-0 sm:pt-6 md:pt-12">
+    <section className="relative overflow-hidden mt-0 pt-6 sm:pt-12 md:pt-16">
       {/* Minimal healthcare background with floating icons */}
       <FloatingMedicalIcons />
 

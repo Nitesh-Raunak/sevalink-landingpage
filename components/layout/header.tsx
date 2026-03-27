@@ -42,9 +42,9 @@ export const Header = () => {
             <Image
               src="/assets/brand/SevaLink-logo-r.png"
               alt="SevaLink"
-              width={320}
-              height={80}
-              className="h-11 sm:h-14 md:h-18 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
+              width={360}
+              height={90}
+              className="h-16 sm:h-16 md:h-16 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
               priority
             />
           </Link>
@@ -103,9 +103,9 @@ export const Header = () => {
                     <Image
                       src="/assets/brand/SevaLink-logo-r.png"
                       alt="SevaLink"
-                      width={320}
-                      height={80}
-                      className="h-11 sm:h-14 md:h-18 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
+                      width={360}
+                      height={90}
+                      className="h-16 sm:h-16 md:h-16 w-auto object-contain transition-all duration-300 group-hover:opacity-80"
                     />
                   </Link>
                 </div>

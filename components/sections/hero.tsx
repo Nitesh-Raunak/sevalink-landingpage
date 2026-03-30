@@ -99,7 +99,7 @@ export function HeroSection() {
               </div>
 
               {/* RIGHT: Layered images with swap interaction (desktop/tablet) or swipeable (mobile) */}
-              <div className="relative flex items-center justify-center min-h-[10rem] sm:min-h-[18rem] md:min-h-[22rem] mt-0 mb-2">
+              <div className="relative w-[400px] h-[300px] sm:w-[480px] sm:h-[350px] md:w-[520px] md:h-[380px] mx-auto mt-0 mb-2 select-none">
                 {/* Mobile: swipeable image carousel */}
                 {isMobile ? (
                   <div
@@ -146,17 +146,19 @@ export function HeroSection() {
                   </div>
                 ) : (
                   <>
-                    {/* Large image */}
+                    {/* Large image: always top-right, absolute */}
                     <div
                       className={clsx(
-                        "transition-all duration-300 ease-in-out rounded-2xl shadow-xl border overflow-hidden bg-white",
+                        "absolute transition-all duration-300 ease-in-out rounded-2xl shadow-xl border overflow-hidden bg-white",
                         images[largeIdx].border,
-                        "w-[270px] h-[200px] sm:w-[340px] sm:h-[250px] md:w-[400px] md:h-[300px] z-10"
+                        isAmbulanceLarge
+                          ? "w-[320px] h-[240px] sm:w-[400px] sm:h-[300px] md:w-[440px] md:h-[320px]"
+                          : "w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[220px] md:h-[160px]",
+                        "top-0 right-0 z-10"
                       )}
                       style={{
                         boxShadow: "0 8px 32px 0 rgba(44,62,80,0.13)",
                         transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
-                        position: "relative",
                       }}
                     >
                       <Image
@@ -174,17 +176,19 @@ export function HeroSection() {
                         {images[largeIdx].label}
                       </span>
                     </div>
-                    {/* Small overlay image */}
+                    {/* Small image: always bottom-left, absolute, higher z-index, clickable */}
                     <div
                       className={clsx(
                         "absolute transition-all duration-300 ease-in-out rounded-xl shadow-lg border overflow-hidden cursor-pointer group",
                         images[smallIdx].border,
-                        "w-[150px] h-[110px] sm:w-[180px] sm:h-[130px] md:w-[200px] md:h-[150px] z-20",
-                        "bottom-[-18px] left-[2.5rem] sm:left-[2.75rem] md:left-[3.5rem]"
+                        isAmbulanceLarge
+                          ? "w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[220px] md:h-[160px]"
+                          : "w-[320px] h-[240px] sm:w-[400px] sm:h-[300px] md:w-[440px] md:h-[320px]",
+                        "bottom-0 left-0 z-20"
                       )}
                       style={{
                         boxShadow: "0 4px 16px 0 rgba(44,62,80,0.13)",
-                        transform: "scale(1)",
+                        transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
                       }}
                       tabIndex={0}
                       aria-label={images[smallIdx].label + " image toggle"}

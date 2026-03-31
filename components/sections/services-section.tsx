@@ -142,6 +142,7 @@ export default function ServicesSection() {
                 isActive={activeCardId === service.title}
                 isRoleHighlighted={highlightedRole === service.role}
                 onIntersect={setActiveCardId}
+                cardId={index === 0 ? "service-patient" : undefined}
               />
             ))}
           </div>
@@ -149,7 +150,7 @@ export default function ServicesSection() {
 
         {/* Homecare Services Subsection */}
         <div className="mt-12 sm:mt-16">
-          <h3 className="mb-6 text-xl font-bold text-green-600 sm:text-2xl lg:text-3xl">
+          <h3 id="homecare-services" className="mb-6 text-xl font-bold text-green-600 sm:text-2xl lg:text-3xl">
             Homecare Services
           </h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
@@ -175,17 +176,19 @@ function ServiceCard({
   index, 
   isActive, 
   isRoleHighlighted,
-  onIntersect 
+  onIntersect,
+  cardId: customCardId
 }: { 
   service: ServiceItem; 
   index: number;
   isActive: boolean;
   isRoleHighlighted: boolean;
   onIntersect: (id: string | null) => void;
+  cardId?: string;
 }) {
   const Icon = service.icon;
   const cardRef = useRef<HTMLElement>(null);
-  const cardId = service.role ? `service-${service.role}` : `service-card-${index}`;
+  const cardId = customCardId || (service.role ? `service-${service.role}` : `service-card-${index}`);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -213,7 +216,7 @@ function ServiceCard({
       id={cardId}
       data-role={service.role ?? "none"}
       ref={cardRef}
-      className={`service-card relative rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 ${
+      className={`service-card relative rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 ${cardId === "service-patient" ? "scroll-mt-20 md:scroll-mt-16" : ""} ${
         isRoleHighlighted
           ? "scale-[1.05] border-red-300 ring-2 ring-red-200 shadow-[0_0_0_4px_rgba(239,68,68,0.12),0_16px_26px_rgba(239,68,68,0.18)]"
           : ""

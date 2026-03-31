@@ -43,9 +43,9 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between md:h-28">
-          <div className="flex items-center justify-between h-[5.5rem] sm:h-24 md:h-auto md:shrink-0">
+      <div className="w-full px-0 sm:px-0">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between md:h-16">
+          <div className="flex items-center justify-between h-14 sm:h-16 md:h-auto md:shrink-0 pl-4 pr-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group cursor-pointer">
               <Image
@@ -53,7 +53,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
                 alt="SevaLink"
                 width={440}
                 height={110}
-                className="h-[5.5rem] sm:h-20 md:h-28 w-auto object-contain transition-all duration-300"
+                className="h-16 sm:h-20 md:h-24 w-auto object-contain transition-all duration-300"
                 priority
               />
             </Link>
@@ -104,7 +104,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
 
                       <div className="mt-6 pt-6 border-t border-gray-200 flex flex-col gap-3">
                         <Link
-                          href="/#services"
+                          href="/services#ambulance"
                           className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-red-600 !text-white visited:!text-white hover:!text-white active:!text-white text-base font-semibold hover:bg-red-700 hover:shadow-lg transition-all text-center cursor-pointer border-none"
                           onClick={() => setMobileOpen(false)}
                         >
@@ -128,7 +128,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center justify-center flex-1 gap-1 px-4">
+          <nav className="hidden md:flex items-center justify-center flex-1 gap-1 px-2 mx-auto ml-8">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -143,9 +143,9 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
           </nav>
 
           {/* CTA + Toggle - Desktop */}
-          <div className="hidden md:flex items-center gap-3 md:shrink-0">
+          <div className="hidden md:flex items-center gap-2 md:shrink-0">
             {showModeToggle ? (
-              <div className="relative inline-grid grid-cols-2 items-center rounded-full border border-gray-200/70 bg-white/90 p-1 shadow-sm backdrop-blur-sm md:ml-4 md:inline-flex">
+              <div className="relative inline-grid grid-cols-2 items-center rounded-full border border-gray-200/70 bg-white/90 p-0.5 shadow-sm backdrop-blur-sm md:ml-2 md:inline-flex">
                 <span
                   aria-hidden
                   className={`absolute top-1 bottom-1 w-[calc(50%-0.25rem)] rounded-full shadow-sm transition-all duration-300 ease-in-out ${
@@ -157,7 +157,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
                 <button
                   type="button"
                   onClick={() => onModeChange?.("emergency")}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
+                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold transition-all duration-200 ${
                     activeMode === "emergency" ? "relative z-10 text-white" : "relative z-10 text-gray-800"
                   }`}
                 >
@@ -167,7 +167,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
                 <button
                   type="button"
                   onClick={() => onModeChange?.("homecare")}
-                  className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
+                  className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold transition-all duration-200 ${
                     activeMode === "homecare" ? "relative z-10 text-white" : "relative z-10 text-gray-800"
                   }`}
                 >
@@ -177,15 +177,15 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
               </div>
             ) : null}
             <Link
-              href="/#services"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-red-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
+              href="/services#ambulance"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
             >
               <Ambulance className="w-4 h-4" />
               Book Ambulance
             </Link>
             <Link
               href="/services#homecare"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
             >
               <HousePlus className="w-4 h-4" />
               Book Home Care

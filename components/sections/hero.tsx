@@ -8,276 +8,213 @@ import Link from "next/link";
 import { Ambulance, HousePlus } from "lucide-react";
 import { FloatingMedicalIcons } from "../ui/medical-background";
 import clsx from "clsx";
+import { motion, AnimatePresence } from "framer-motion";
+
+const HEADER_HEIGHT = {
+  mobile: "5.5rem", // 88px
+  sm: "5rem",      // 80px
+  md: "4rem",      // 64px
+};
 
 export function HeroSection() {
-  // State: 0 = ambulance is large, 1 = homecare is large
-  const [largeIdx, setLargeIdx] = useState(0); // 0: ambulance, 1: homecare
-  const smallIdx = largeIdx === 0 ? 1 : 0;
-    // For swipeable mobile carousel
-    const [mobileIdx, setMobileIdx] = useState(0); // 0 = ambulance, 1 = homecare
-    const [isMobile, setIsMobile] = useState(false);
-    const touchStartX = useRef(0);
-    const touchEndX = useRef(0);
-    // SSR-safe effect
-    React.useEffect(() => {
-      const checkMobile = () => setIsMobile(window.innerWidth < 640);
-      checkMobile();
-      window.addEventListener("resize", checkMobile);
-      return () => window.removeEventListener("resize", checkMobile);
-    }, []);
+  // State: 'emergency' or 'homecare'
+  const [active, setActive] = useState<'emergency' | 'homecare'>("emergency");
+  const inactive = active === "emergency" ? "homecare" : "emergency";
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
-    // Image data
-    const images = [
-      {
-        src: "/images/ambulance.png",
-        alt: "Ambulance service",
-        label: "Emergency",
-        border: "border-red-100/80",
-        badge: "bg-red-100/95 text-red-700",
-        icon: <Ambulance className="h-4 w-4" />,
-        link: "/#services",
-        btn: "bg-red-600 hover:bg-red-700",
-        btnText: "Book Ambulance",
-      },
-      {
-        src: "/images/homecare.avif",
-        alt: "Homecare service",
-        label: "Home Care",
-        border: "border-emerald-100/80",
-        badge: "bg-emerald-100/95 text-emerald-700",
-        icon: <HousePlus className="h-4 w-4" />,
-        link: "/services#homecare",
-        btn: "bg-emerald-600 hover:bg-emerald-700",
-        btnText: "Book Home Care",
-      },
-    ];
-
+  // Data for each hero state
+  const heroData = {
+    emergency: {
+      tag: "Emergency Services",
+      headline: ["Every Second", "Matters"],
+      desc: "Book a verified ambulance in 30 seconds. GPS-tracked, 24/7 available.",
+      image: "/images/ambulance.png",
+      cta: "Book Ambulance",
+      ctaLink: "/services#ambulance",
+      stats: [
+        { icon: Ambulance, val: "10 min", label: "Response" },
+        { icon: HousePlus, val: "24/7", label: "Available" },
+      ],
+    },
+    homecare: {
+      tag: "Home Care",
+      headline: ["Professional Care", "At Your Door"],
+      desc: "Nursing, elderly support & doctor visits by verified professionals.",
+      image: "/images/homecare.avif",
+      cta: "Book Home Care",
+      ctaLink: "/services#homecare",
+      stats: [
+        { icon: HousePlus, val: "At Home", label: "Visits" },
+        { icon: Ambulance, val: "Verified", label: "Staff" },
+      ],
+    },
+  };
 
 
-    return (
-      <section className="relative overflow-hidden sm:pt-8 md:pt-10">
-        <FloatingMedicalIcons />
-        <div className="absolute inset-0 z-0 bg-white/45" />
-        <div
-          className="absolute inset-0 z-0 opacity-[0.03]"
-          style={{
-            backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
-        />
 
-        <div className="container mx-auto px-4 sm:px-6 py-2 sm:py-6 md:py-8 relative z-10">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-              {/* LEFT: Content unchanged */}
-              <div>
-                {/* Toggle Switch */}
-                <div className="mb-3 flex items-center md:justify-start justify-center">
-                  <div className="flex rounded-full bg-gray-100 p-1 w-fit shadow-sm transition-all">
-                    <button
-                      type="button"
-                      className={clsx(
-                        "px-4 py-1.5 rounded-full font-bold text-sm transition-all duration-300",
-                        largeIdx === 0
-                          ? "bg-red-600 text-white shadow-md scale-105"
-                          : "bg-transparent text-red-700 hover:bg-red-100"
-                      )}
-                      style={{ outline: 'none', border: 'none' }}
-                      onClick={() => {
-                        setLargeIdx(0);
-                        setMobileIdx(0);
-                      }}
-                      aria-pressed={largeIdx === 0}
+  return (
+    <section className="relative min-h-screen bg-background font-display overflow-hidden flex items-center justify-center">
+      <FloatingMedicalIcons />
+      {/* Subtle background gradient */}
+      <div className={`absolute top-1/2 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-10 -translate-y-1/2 ${active === "emergency" ? "bg-red-500" : "bg-emerald-400"}`} />
+      {/* Removed colored spacing background */}
+      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-16 pt-0 lg:pt-0 mt-0 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          {/* Left Content */}
+          <div className="lg:col-span-5 pt-0 sm:pt-0 mt-0 md:pt-2 md:mt-0">
+            {/* Toggle with framer-motion sliding bg */}
+            <div className="relative inline-flex items-center bg-muted rounded-full p-1 mb-2">
+              <motion.div
+                className={`absolute top-1 bottom-1 rounded-full shadow-lg ${active === "emergency" ? "bg-red-500 shadow-red-400/30" : "bg-emerald-400 shadow-emerald-300/30"}`}
+                layout
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                style={{ left: active === "emergency" ? "4px" : "50%", right: active === "emergency" ? "50%" : "4px" }}
+              />
+              {["emergency", "homecare"].map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setActive(s as 'emergency' | 'homecare')}
+                  className={`relative z-10 flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold transition-colors duration-200 ${active === s ? "text-white" : "text-muted-foreground hover:text-foreground"}`}
+                  aria-pressed={active === s}
+                >
+                  {s === "emergency" ? <Ambulance className="w-4 h-4" /> : <HousePlus className="w-4 h-4" />}
+                  {s === "emergency" ? "Emergency" : "Home Care"}
+                </button>
+              ))}
+            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.4 }}
+              >
+                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                  {heroData[active].tag}
+                </span>
+                <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.08] tracking-tight">
+                  {heroData[active].headline[0]}
+                  <br />
+                  <span className={active === "emergency" ? "text-red-500" : "text-emerald-400"}>{heroData[active].headline[1]}</span>
+                </h1>
+                <p className="mt-5 text-muted-foreground text-base leading-relaxed max-w-sm">{heroData[active].desc}</p>
+                <div className="flex items-center gap-4 mt-8">
+                  {active === "emergency" ? (
+                    <Link
+                      href="/services#ambulance"
+                      scroll={true}
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm shadow-xl transition-all hover:scale-105 bg-red-500 !text-white shadow-red-400/25"
                     >
-                      Emergency
-                    </button>
-                    <button
-                      type="button"
-                      className={clsx(
-                        "px-4 py-1.5 rounded-full font-bold text-sm transition-all duration-300",
-                        largeIdx === 1
-                          ? "bg-emerald-600 text-white shadow-md scale-105"
-                          : "bg-transparent text-emerald-700 hover:bg-emerald-100"
-                      )}
-                      style={{ outline: 'none', border: 'none' }}
-                      onClick={() => {
-                        setLargeIdx(1);
-                        setMobileIdx(1);
-                      }}
-                      aria-pressed={largeIdx === 1}
-                    >
-                      Home Care
-                    </button>
-                  </div>
-                </div>
-                <div className="text-center md:text-left">
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight tracking-tight">
-                    Book <span className="text-red-600">Ambulance</span> &amp; <span className="text-emerald-600">Homecare</span> Services in Minutes
-                  </h1>
-                  <p className="mt-3 text-base sm:text-lg text-gray-600 max-w-2xl mx-auto md:mx-0">
-                    {largeIdx === 0
-                      ? "Fast, reliable healthcare at your doorstep. Anytime, anywhere."
-                      : "Nursing, elderly support & doctor visits by verified professionals."}
-                  </p>
-                </div>
-                <div className="mt-4 mb-2 sm:mt-8 sm:mb-0 flex flex-col sm:flex-row gap-4 sm:gap-6 items-center md:items-start justify-center md:justify-start">
-                  {largeIdx === 0 ? (
-                    <>
-                      <Link
-                        href="/#services"
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-red-600 px-6 text-sm font-bold !text-white visited:!text-white hover:!text-white active:!text-white shadow-md transition-transform hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
-                      >
-                        <Ambulance className="h-4 w-4" />
-                        Book Ambulance
-                      </Link>
-                    </>
+                      {heroData[active].cta}
+                    </Link>
                   ) : (
-                    <>
-                      <Link
-                        href="/services#homecare"
-                        className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 text-sm font-bold !text-white visited:!text-white hover:!text-white active:!text-white shadow-md transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg focus:scale-105 focus:shadow-lg"
-                      >
-                        <HousePlus className="h-4 w-4" />
-                        Book Home Care
-                      </Link>
-                    </>
+                    <Link
+                      href={heroData[active].ctaLink}
+                      className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm shadow-xl transition-all hover:scale-105 bg-emerald-400 !text-white shadow-emerald-300/25"
+                    >
+                      {heroData[active].cta}
+                    </Link>
+                  )}
+                  {active === "homecare" ? (
+                    <a href="#homecare-services" className="px-5 py-3.5 rounded-full text-sm font-semibold text-foreground border border-border hover:bg-accent transition-colors">Learn More</a>
+                  ) : (
+                    <a href="#services" className="px-5 py-3.5 rounded-full text-sm font-semibold text-foreground border border-border hover:bg-accent transition-colors">Learn More</a>
                   )}
                 </div>
-                {largeIdx === 0 ? (
-                  <div className="mt-2 text-xs sm:text-sm text-gray-700 flex flex-wrap gap-x-4 gap-y-1 items-center justify-center md:justify-start">
-                    <span className="inline-flex items-center gap-1"><span className="text-green-600 font-bold">✔</span> 24/7 Available</span>
-                    <span className="inline-flex items-center gap-1"><span className="text-green-600 font-bold">✔</span> Verified Providers</span>
-                    <span className="inline-flex items-center gap-1"><span className="text-green-600 font-bold">✔</span> Quick Response</span>
-                  </div>
-                ) : (
-                  <div className="mt-2 text-xs sm:text-sm text-gray-700 flex flex-wrap gap-x-4 gap-y-1 items-center justify-center md:justify-start">
-                    <span className="inline-flex items-center gap-1"><span className="text-green-600 font-bold">✔</span> At Home Visits</span>
-                    <span className="inline-flex items-center gap-1"><span className="text-green-600 font-bold">✔</span> Verified Staff</span>
-                  </div>
-                )}
-              </div>
-
-              {/* RIGHT: Layered images with swap interaction (desktop/tablet) or swipeable (mobile) */}
-              <div className="relative w-full md:w-[520px] md:h-[380px] mx-auto mt-0 mb-2 select-none">
-                {/* Mobile: swipeable image carousel */}
-                {isMobile ? (
-                  <div className="px-4 w-full">
-                    <div className="rounded-2xl overflow-hidden shadow-md bg-white">
-                      <div
-                        className="relative w-full h-[180px] sm:h-[250px] select-none"
-                        onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
-                        onTouchMove={e => { touchEndX.current = e.touches[0].clientX; }}
-                        onTouchEnd={() => {
-                          const dx = touchEndX.current - touchStartX.current;
-                          if (Math.abs(dx) > 40) {
-                            if (dx < 0 && mobileIdx < images.length - 1) setMobileIdx(mobileIdx + 1);
-                            if (dx > 0 && mobileIdx > 0) setMobileIdx(mobileIdx - 1);
-                          }
-                        }}
-                      >
-                        <Image
-                          src={images[mobileIdx].src}
-                          alt={images[mobileIdx].alt}
-                          className="object-cover"
-                          fill
-                          sizes="100vw"
-                          priority
-                        />
-                        <span className={clsx(
-                          "absolute top-3 left-3 z-20 inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide shadow-sm",
-                          images[mobileIdx].badge
-                        )}>
-                          {images[mobileIdx].label}
-                        </span>
-                        {/* Dots */}
-                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-                          {images.map((_, idx) => (
-                            <button
-                              key={idx}
-                              className={clsx(
-                                "w-2.5 h-2.5 rounded-full transition-all",
-                                mobileIdx === idx ? "bg-red-500 scale-110" : "bg-gray-300"
-                              )}
-                              style={{ outline: "none", border: "none" }}
-                              aria-label={`Show ${images[idx].label}`}
-                              onClick={() => setMobileIdx(idx)}
-                            />
-                          ))}
-                        </div>
+                <div className="flex gap-6 mt-4 pt-4 border-t border-border">
+                  {heroData[active].stats.map((stat) => (
+                    <div key={stat.label} className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${active === "emergency" ? "bg-red-500/10" : "bg-emerald-400/10"}`}>
+                        <stat.icon className={`w-5 h-5 ${active === "emergency" ? "text-red-500" : "text-emerald-400"}`} />
+                      </div>
+                      <div>
+                        <p className="font-bold text-foreground">{stat.val}</p>
+                        <p className="text-xs text-muted-foreground">{stat.label}</p>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <>
-                    {/* Desktop/Tablet: Layered images */}
-                    <div className="px-4 w-full h-full relative">
-                      {/* Large image: always top-right, fixed size, absolute */}
-                      <div
-                        className={clsx(
-                          "absolute transition-all duration-300 ease-in-out rounded-2xl overflow-hidden shadow-md bg-white border",
-                          images[largeIdx].border,
-                          "w-[320px] h-[240px] sm:w-[400px] sm:h-[300px] md:w-[440px] md:h-[320px]",
-                          "top-0 right-0 z-10"
-                        )}
-                        style={{
-                          transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
-                        }}
-                      >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={images[largeIdx].src}
-                            alt={images[largeIdx].alt}
-                            fill
-                            className="object-cover transition-all duration-300"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            priority
-                          />
-                          <span className={clsx(
-                            "absolute top-3 left-3 z-20 inline-flex w-fit items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide shadow-sm",
-                            images[largeIdx].badge
-                          )}>
-                            {images[largeIdx].label}
-                          </span>
-                        </div>
-                      </div>
-                      {/* Small image: always bottom-left, fixed size, absolute, higher z-index, clickable */}
-                      <div
-                        className={clsx(
-                          "absolute transition-all duration-300 ease-in-out rounded-xl overflow-hidden shadow-lg border cursor-pointer group bg-white",
-                          images[smallIdx].border,
-                          "w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[220px] md:h-[160px]",
-                          "bottom-0 left-0 z-20"
-                        )}
-                        style={{
-                          transition: "all 0.3s cubic-bezier(.4,0,.2,1)",
-                        }}
-                        tabIndex={0}
-                        aria-label={images[smallIdx].label + " image toggle"}
-                        onClick={() => setLargeIdx(smallIdx)}
-                        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') setLargeIdx(smallIdx); }}
-                      >
-                        <div className="relative w-full h-full">
-                          <Image
-                            src={images[smallIdx].src}
-                            alt={images[smallIdx].alt}
-                            fill
-                            className="object-cover transition-all duration-300 group-hover:scale-105"
-                            sizes="140px"
-                          />
-                          <span className={clsx(
-                            "absolute top-2 left-2 z-20 inline-flex w-fit items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide shadow-sm bg-white/80 text-gray-700"
-                          )}>
-                            {images[smallIdx].label}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                )}
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          {/* Right Images — Asymmetric, animated, swipeable on mobile */}
+          <div className="lg:col-span-7 relative min-h-[38vh] h-[220px] xs:h-[280px] sm:h-[340px] md:h-[440px] lg:h-[540px]">
+            {/* Main Image */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, scale: 0.95, rotate: -1 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-0 right-0 w-[85%] h-[85%] rounded-3xl overflow-hidden shadow-2xl z-10"
+              >
+                <Image
+                  src={heroData[active].image}
+                  alt="Hero main image"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className={`absolute bottom-4 left-4 px-4 py-2 rounded-full text-xs font-bold text-white ${active === "emergency" ? "bg-red-500/90" : "bg-emerald-400/90"}`}>
+                  {active === "emergency" ? "⚡ ETA: 10 min" : "✓ Verified Professional"}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            {/* Peeking Image (clickable) */}
+            <motion.div
+              className="absolute bottom-0 left-0 w-[55%] h-[55%] rounded-2xl overflow-hidden shadow-xl border-4 border-background z-20 cursor-pointer"
+              onClick={() => setActive(inactive)}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={heroData[inactive].image}
+                alt="Hero peeking image"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 60vw, 30vw"
+                priority={false}
+              />
+              <div className="absolute inset-0 bg-black/40 flex items-end justify-start p-3">
+                <span
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg font-semibold text-xs shadow-md transition-all bg-white/90 !text-black border border-gray-200 select-none cursor-default"
+                >
+                  {heroData[inactive].cta}
+                </span>
               </div>
-            </div>
+            </motion.div>
+            {/* Mobile swipe support */}
+            {isMobile && (
+              <div
+                className="absolute inset-0 z-30 cursor-pointer"
+                onTouchStart={e => { touchStartX.current = e.touches[0].clientX; }}
+                onTouchMove={e => { touchEndX.current = e.touches[0].clientX; }}
+                onTouchEnd={() => {
+                  const dx = touchEndX.current - touchStartX.current;
+                  if (Math.abs(dx) > 40) {
+                    if (dx < 0) setActive("homecare");
+                    if (dx > 0) setActive("emergency");
+                  }
+                }}
+              />
+            )}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
   );
 }

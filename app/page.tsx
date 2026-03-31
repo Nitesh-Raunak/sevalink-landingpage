@@ -17,11 +17,11 @@ import { ServiceAvailabilitySection } from "@/components/sections/service-availa
 
 export default function Home() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#FFF3E0" }}>
+    <div className="min-h-screen">
       {/* Top Navigation */}
       <Header />
 
-      <main className="pt-[6.5rem] sm:pt-[7.5rem] md:pt-24">
+      <main className="pt-[3.5rem] sm:pt-[4.5rem] md:pt-16">
 
         {/* 1. Main Banner */}
         <HeroSection />

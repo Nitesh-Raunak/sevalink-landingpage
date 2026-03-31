@@ -55,7 +55,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-background font-display overflow-hidden flex items-center justify-center px-0 py-0 -mt-6 sm:mt-0">
+    <section className="relative bg-background font-display overflow-hidden flex items-center justify-center px-0 py-0 pt-10">
       <FloatingMedicalIcons />
       <div className={`absolute top-1/2 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-10 -translate-y-1/2 ${active === "emergency" ? "bg-red-500" : "bg-emerald-400"}`} />
       <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)", backgroundSize: "32px 32px" }} />

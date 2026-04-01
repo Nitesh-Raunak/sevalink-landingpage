@@ -55,7 +55,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative bg-background font-display overflow-hidden flex items-center justify-center px-[20px] sm:px-6 lg:px-8 py-0 pt-4">
+    <section className="relative bg-white font-display overflow-hidden flex items-center justify-center md:mt-0 px-[20px] sm:px-6 lg:px-8 py-0 pt-6 -mt-[9px]">
       <FloatingMedicalIcons />
       <div className={`absolute top-1/2 right-0 w-[600px] h-[600px] rounded-full blur-[150px] opacity-10 -translate-y-1/2 ${active === "emergency" ? "bg-red-500" : "bg-emerald-400"}`} />
       <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)", backgroundSize: "32px 32px" }} />
@@ -65,7 +65,7 @@ export function HeroSection() {
           <div className="lg:col-span-5 flex flex-col justify-center h-full min-h-[320px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[540px] pt-0 sm:pt-0 md:pt-0 lg:pt-0 mt-0">
             {/* Toggle styled like reference HeroToggle */}
             <div className="flex mb-4">
-              <div className="relative flex bg-card rounded-full p-1 shadow-sm border border-border w-full max-w-xs" style={{ minWidth: "220px" }}>
+              <div className="relative flex bg-white rounded-full p-1 w-full max-w-xs">
                 {[
                   { id: "emergency", label: "Emergency", icon: Phone },
                   { id: "homecare", label: "Home Care", icon: Home },

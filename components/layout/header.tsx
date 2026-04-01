@@ -42,7 +42,7 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b-0 shadow-none [transform:translateZ(0)]">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between md:h-16">
           <div className="flex items-center justify-between h-12 sm:h-16 md:h-auto md:shrink-0">

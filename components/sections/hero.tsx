@@ -63,25 +63,34 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 items-start">
           {/* Left Content */}
           <div className="lg:col-span-5 flex flex-col justify-center h-full min-h-[320px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[540px] pt-0 sm:pt-0 md:pt-0 lg:pt-0 mt-0">
-            {/* Toggle — Direct button styling, no motion.div */}
-            <div className="inline-flex items-center gap-2 rounded-full p-1 mb-4 w-full max-w-xs bg-gray-100 dark:bg-gray-800" style={{minWidth:'220px'}}>
-              {["emergency", "homecare"].map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setActive(s as 'emergency' | 'homecare')}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold w-1/2 justify-center transition-all duration-300 ${
-                    active === s 
-                      ? s === "emergency" 
-                        ? "bg-red-500 text-white" 
-                        : "bg-emerald-500 text-white"
-                      : "bg-white dark:bg-gray-900 text-black dark:text-white"
-                  }`}
-                  aria-pressed={active === s}
-                >
-                  {s === "emergency" ? <Ambulance className="w-4 h-4" /> : <HousePlus className="w-4 h-4" />}
-                  {s === "emergency" ? "Emergency" : "Home Care"}
-                </button>
-              ))}
+            {/* Toggle styled like reference HeroToggle */}
+            <div className="flex mb-4">
+              <div className="relative flex bg-card rounded-full p-1 shadow-sm border border-border w-full max-w-xs" style={{ minWidth: "220px" }}>
+                {[
+                  { id: "emergency", label: "Emergency", icon: Ambulance },
+                  { id: "homecare", label: "Home Care", icon: HousePlus },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActive(tab.id as "emergency" | "homecare")}
+                    className={`relative z-10 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200 justify-center w-1/2 ${
+                      active === tab.id ? "text-white" : "text-muted-foreground"
+                    }`}
+                    aria-pressed={active === tab.id}
+                  >
+                    <tab.icon className="w-4 h-4" />
+                    {tab.label}
+                    {active === tab.id && (
+                      <motion.div
+                        layoutId="hero-toggle-bg"
+                        className={`absolute inset-0 rounded-full ${tab.id === "emergency" ? "bg-red-500" : "bg-emerald-500"}`}
+                        style={{ zIndex: -1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
             <AnimatePresence mode="wait">
               <motion.div

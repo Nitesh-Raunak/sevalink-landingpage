@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Ambulance, HousePlus, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
+const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
+
 type ServiceBlock = {
   id: string;
   eyebrow: string;
@@ -49,7 +51,7 @@ const services: ServiceBlock[] = [
     description:
       "Bring professional medical care to your doorstep with qualified nurses, assisted daily routines, and personalized recovery support for families.",
     ctaText: "Book Homecare",
-    ctaHref: "/contact",
+    ctaHref: HOMECARE_URL,
     icon: HousePlus,
     iconBg: "from-blue-500 to-cyan-500",
     imageSrc: "/images/family-service.webp",
@@ -167,13 +169,13 @@ function ServiceShowcaseBlock({
             ))}
           </div>
 
-          <button
-            type="button"
+          <a
+            href={service.ctaHref}
             className="mt-7 inline-flex items-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-[0_10px_25px_rgba(220,38,38,0.35)] transition-colors duration-200 hover:bg-red-700"
           >
             {service.ctaText}
             <ArrowRight className="h-4 w-4" />
-          </button>
+          </a>
         </div>
       </motion.div>
     </section>

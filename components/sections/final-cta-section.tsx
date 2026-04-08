@@ -5,9 +5,10 @@ import { Ambulance, Phone } from "lucide-react";
 import Link from "next/link";
 import styles from "./final-cta-section.module.css";
 
-// Read from environment variable — set NEXT_PUBLIC_SUPPORT_PHONE in .env.local
+// Read from environment variables
 const SEVALINK_PHONE =
   process.env.NEXT_PUBLIC_SUPPORT_PHONE ?? "+918000000000";
+const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
 
 const trustPoints = ["No Hidden Charges", "Currently Serving Rajkot, Gujarat"];
 
@@ -83,13 +84,13 @@ export function FinalCTASection() {
             <Ambulance className="w-5 h-5" /> Book Ambulance Now
           </Link>
 
-          <Link
-            href="/services#homecare"
+          <a
+            href={HOMECARE_URL}
             className={styles.primaryCtaButton}
             style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none", background: "rgba(34, 197, 94, 0.9)", borderBottom: "3px solid rgba(22, 163, 74, 1)" }}
           >
             Book Home Care
-          </Link>
+          </a>
 
           <a
             href={`tel:${SEVALINK_PHONE}`}

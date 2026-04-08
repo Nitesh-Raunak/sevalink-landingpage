@@ -13,6 +13,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
+
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Provider", href: "/provider" },
@@ -111,14 +113,14 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
                           <Ambulance className="w-5 h-5" />
                           Book Ambulance
                         </Link>
-                        <Link
-                          href="/services#homecare"
+                        <a
+                          href={HOMECARE_URL}
                           className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-emerald-600 !text-white visited:!text-white hover:!text-white active:!text-white text-base font-semibold hover:bg-emerald-700 hover:shadow-lg transition-all text-center cursor-pointer border-none"
                           onClick={() => setMobileOpen(false)}
                         >
                           <HousePlus className="w-5 h-5" />
                           Book Home Care
-                        </Link>
+                        </a>
                       </div>
                     </nav>
                   </div>
@@ -183,13 +185,13 @@ export const Header = ({ activeMode, onModeChange }: HeaderProps = {}) => {
               <Ambulance className="w-4 h-4" />
               Book Ambulance
             </Link>
-            <Link
-              href="/services#homecare"
+            <a
+              href={HOMECARE_URL}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 !text-white visited:!text-white hover:!text-white active:!text-white text-sm font-semibold hover:bg-emerald-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer border-none"
             >
               <HousePlus className="w-4 h-4" />
               Book Home Care
-            </Link>
+            </a>
           </div>
 
           {showModeToggle ? (

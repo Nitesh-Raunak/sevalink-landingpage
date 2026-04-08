@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Stethoscope, HeartHandshake, HousePlus, Activity } from "lucide-react";
 
+const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
+
 const homeCareServices = [
   {
     title: "Nurse at Home",
@@ -59,12 +61,12 @@ export function HomeCareServicesSection() {
         </div>
 
         <div className="mt-10 text-center">
-          <Link
-            href="/services#homecare"
+          <a
+            href={HOMECARE_URL}
             className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-7 py-3 text-sm font-bold !text-white visited:!text-white hover:!text-white active:!text-white shadow-md transition-colors duration-200 hover:bg-emerald-700"
           >
             Book Home Care Now
-          </Link>
+          </a>
         </div>
       </div>
     </section>

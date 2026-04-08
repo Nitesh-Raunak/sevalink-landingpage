@@ -8,6 +8,8 @@ import { FloatingMedicalIcons } from "../ui/medical-background";
 import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 
+const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
+
 const HEADER_HEIGHT = {
   mobile: "5.5rem", // 88px
   sm: "5rem",      // 80px
@@ -33,7 +35,7 @@ const heroData = {
     desc: "Nursing, elderly support & doctor visits by verified professionals.",
     image: "/images/homecare.avif",
     cta: "Book Home Care",
-    ctaLink: "/services#homecare",
+    ctaLink: HOMECARE_URL,
     stats: [
       { icon: HousePlus, val: "At Home", label: "Visits" },
       { icon: Ambulance, val: "Verified", label: "Staff" },
@@ -113,13 +115,22 @@ export function HeroSection() {
                 </h1>
                 <p className="mt-3 text-muted-foreground text-sm leading-relaxed max-w-xs mb-6">{heroData[active].desc}</p>
                 <div className="flex items-center gap-3 mt-0 mb-4">
-                  <Link
-                    href={heroData[active].ctaLink}
-                    scroll={true}
-                    className={`inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm shadow-xl transition-all hover:scale-105 ${active === "emergency" ? "bg-red-500 !text-white shadow-red-400/25" : "bg-emerald-400 !text-white shadow-emerald-300/25"}`}
-                  >
-                    {heroData[active].cta}
-                  </Link>
+                  {heroData[active].ctaLink.startsWith("http") ? (
+                    <a
+                      href={heroData[active].ctaLink}
+                      className={`inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm shadow-xl transition-all hover:scale-105 ${active === "emergency" ? "bg-red-500 !text-white shadow-red-400/25" : "bg-emerald-400 !text-white shadow-emerald-300/25"}`}
+                    >
+                      {heroData[active].cta}
+                    </a>
+                  ) : (
+                    <Link
+                      href={heroData[active].ctaLink}
+                      scroll={true}
+                      className={`inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm shadow-xl transition-all hover:scale-105 ${active === "emergency" ? "bg-red-500 !text-white shadow-red-400/25" : "bg-emerald-400 !text-white shadow-emerald-300/25"}`}
+                    >
+                      {heroData[active].cta}
+                    </Link>
+                  )}
                 </div>
                 <div className="flex gap-3 mt-0 mb-0">
                   {heroData[active].stats.map((stat) => (

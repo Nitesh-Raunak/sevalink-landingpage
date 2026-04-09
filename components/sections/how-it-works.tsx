@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Activity, Users, CheckCircle, Ambulance } from "lucide-react";
-import { Map } from "@/components/ui/map";
 
 const steps = [
   { id: "01", icon: MapPin, title: "Enter your location", description: "Open SevaLink app and share your location with one click." },
@@ -15,19 +14,15 @@ const steps = [
 const EASE = "easeOut";
 const DURATION = 0.45;
 
+// OpenStreetMap embed — Rajkot city with red pin, no external API key needed
+const RAJKOT_MAP_EMBED =
+  "https://www.openstreetmap.org/export/embed.html?bbox=70.72%2C22.25%2C70.89%2C22.36&layer=mapnik&marker=22.3039%2C70.8022";
+
 function MapScreen() {
-  // Rajkot, Gujarat coordinates - center of map [latitude, longitude]
-  const mapCenter: [number, number] = [22.3039, 70.8022];
-
-  // Sample ambulance location marker
-  const ambulanceMarker = [
-    { lat: 22.3039, lng: 70.8022, label: "Hospital" }
-  ];
-
   return (
-    <div className="relative isolate w-full h-full overflow-hidden rounded-2xl bg-gray-100">
-      {/* Top overlays - always visible above map layers */}
-      <div className="absolute top-2 left-2 right-2 z-[1200] flex items-center pointer-events-none">
+    <div className="relative w-full h-full overflow-hidden rounded-2xl bg-gray-100">
+      {/* Live Tracking badge */}
+      <div className="absolute top-2 left-2 z-20 pointer-events-none">
         <div className="inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-white/50 px-3 py-1.5 shadow-lg shadow-black/10 backdrop-blur-sm">
           <motion.div
             className="w-1.5 h-1.5 rounded-full bg-red-600"
@@ -38,24 +33,17 @@ function MapScreen() {
         </div>
       </div>
 
-      {/* Interactive Map Component - with scroll zoom enabled */}
-      <Map 
-        center={mapCenter} 
-        zoom={15}
-        className="h-full w-full"
-        markers={ambulanceMarker}
-        showControls={true}
-        scrollZoom={true}
-        dragging={true}
+      {/* Rajkot map — iframe embed */}
+      <iframe
+        src={RAJKOT_MAP_EMBED}
+        title="Rajkot, Gujarat — SevaLink service area"
+        className="w-full h-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer"
       />
 
-      {/* Bottom Driver Card - Ambulance Status */}
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="absolute bottom-0 left-0 right-0 p-3 bg-white/97 backdrop-blur-sm border-t border-gray-100 z-[1200]"
-      >
+      {/* Bottom Ambulance ETA card */}
+      <div className="absolute bottom-0 left-0 right-0 p-3 bg-white/97 backdrop-blur-sm border-t border-gray-100 z-20">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-red-50 rounded-full flex items-center justify-center">
@@ -71,7 +59,7 @@ function MapScreen() {
             <p className="text-[8px] text-gray-400 mt-1 uppercase">ETA</p>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -134,16 +122,16 @@ export default function HowItWorksSection() {
             <StepCard step={steps[1]} align="right" />
           </div>
 
-          {/* Center Phone Mockup */}
+          {/* Center Phone Mockup — fixed anchor, never shrinks */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative z-0 order-1 lg:order-2"
+            className="relative z-10 flex-shrink-0 order-1 lg:order-2"
           >
             <div className="absolute inset-0 bg-red-200/40 blur-[60px] rounded-full -z-10 translate-y-8" />
             {/* Phone frame */}
-            <div className="relative isolate z-0 w-52 sm:w-64 lg:w-[240px] h-96 sm:h-[480px] lg:h-[480px] rounded-3xl sm:rounded-[40px] border-4 sm:border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
+            <div className="relative w-52 sm:w-64 lg:w-[240px] h-96 sm:h-[480px] lg:h-[480px] rounded-3xl sm:rounded-[40px] border-4 sm:border-[8px] border-slate-900 bg-[#1a1a2e] shadow-2xl overflow-hidden">
               {/* Camera notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
                 <div className="w-16 h-3 bg-black rounded-b-xl flex items-center justify-center">

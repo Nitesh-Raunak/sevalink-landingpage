@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Stethoscope, HeartHandshake, HousePlus, Activity } from "lucide-react";
 
 const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";

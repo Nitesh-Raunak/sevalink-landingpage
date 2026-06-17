@@ -1,20 +1,15 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Ambulance, HousePlus, Phone, Home } from "lucide-react";
 import { FloatingMedicalIcons } from "../ui/medical-background";
-import clsx from "clsx";
 import { motion, AnimatePresence } from "framer-motion";
 
 const HOMECARE_URL = process.env.NEXT_PUBLIC_HOMECARE_URL ?? "https://homecare.sevalinkcare.com";
 
-const HEADER_HEIGHT = {
-  mobile: "5.5rem", // 88px
-  sm: "5rem",      // 80px
-  md: "4rem",      // 64px
-};
+
 
 const heroData = {
   emergency: {
@@ -46,17 +41,6 @@ const heroData = {
 export function HeroSection() {
   const [active, setActive] = useState<'emergency' | 'homecare'>("emergency");
   const inactive = active === "emergency" ? "homecare" : "emergency";
-  const [isMobile, setIsMobile] = useState(false);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-  const swipeDetected = useRef(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   return (
     <section className="relative bg-white overflow-hidden flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-10 pb-8 sm:pt-14 sm:pb-10 lg:pt-20 lg:pb-16">

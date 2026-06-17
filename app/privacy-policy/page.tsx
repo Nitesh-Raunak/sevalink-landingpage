@@ -12,6 +12,7 @@ const tocItems = [
   { id: "sharing-of-your-personal-data", label: "Sharing of Your Personal Data" },
   { id: "payment-security", label: "Payment Security" },
   { id: "retention-of-your-personal-data", label: "Retention of Your Personal Data" },
+  { id: "user-rights-and-data-deletion", label: "User Rights and Data Deletion" },
   { id: "transfer-of-your-personal-data", label: "Transfer of Your Personal Data" },
   { id: "disclosure-of-your-personal-data", label: "Disclosure of Your Personal Data" },
   { id: "other-legal-requirements", label: "Other Legal Requirements" },
@@ -326,6 +327,79 @@ export default function PrivacyPolicyPage() {
                 Upon termination of your account or upon valid request, we will take reasonable steps to delete or anonymize your Personal Data, unless retention is required for legal, regulatory, or operational reasons.
               </p>
             </div>
+          </section>
+
+          <section id="user-rights-and-data-deletion" className="py-8 border-b border-black/10 scroll-mt-28">
+            <h2 className="text-2xl font-semibold text-gray-900">8A. User Rights and Data Deletion</h2>
+            <p className="mt-4 text-gray-700 leading-8 text-[15px] sm:text-base">
+              At SevaLink, we respect your rights regarding your personal data and provide you with control over how your information is used.
+            </p>
+
+            <h3 className="mt-6 text-xl font-semibold text-gray-900">Your Rights</h3>
+            <ul className="mt-3 list-disc pl-5 sm:pl-6 space-y-3 text-gray-700 leading-8 text-[15px] sm:text-base">
+              <li>
+                <span className="font-semibold">Right to Access:</span> You may request access to the personal data we hold about you.
+              </li>
+              <li>
+                <span className="font-semibold">Right to Correction:</span> You may request correction of inaccurate or incomplete data.
+              </li>
+              <li>
+                <span className="font-semibold">Right to Data Deletion:</span> You may request deletion of your account and all associated personal data.
+              </li>
+              <li>
+                <span className="font-semibold">Right to Withdraw Consent:</span> You may withdraw your consent at any time where processing is based on consent.
+              </li>
+            </ul>
+
+            <h3 className="mt-6 text-xl font-semibold text-gray-900">Account Deletion</h3>
+            <p className="mt-3 text-gray-700 leading-8 text-[15px] sm:text-base">
+              Users can request deletion of their account and all associated personal data through the following methods:
+            </p>
+            <ol className="mt-3 list-decimal pl-5 sm:pl-6 space-y-3 text-gray-700 leading-8 text-[15px] sm:text-base">
+              <li>
+                <span className="font-semibold">In-App Deletion (Recommended):</span> Navigate to{" "}
+                <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm font-mono text-gray-800">Profile → Settings → Delete Account</code>{" "}
+                and follow the steps to permanently delete your account.
+              </li>
+              <li>
+                <span className="font-semibold">Web-Based Request:</span> Visit{" "}
+                <a
+                  href="https://sevalinkcare.com/delete-account"
+                  className="text-red-700 hover:text-red-800 hover:underline underline-offset-4"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  https://sevalinkcare.com/delete-account
+                </a>
+                {" "}to submit a deletion request.
+              </li>
+              <li>
+                <span className="font-semibold">Email Request:</span> Send a deletion request to{" "}
+                <a
+                  href="mailto:support@sevalinkcare.com"
+                  className="text-red-700 hover:text-red-800 hover:underline underline-offset-4"
+                >
+                  support@sevalinkcare.com
+                </a>
+                .
+              </li>
+            </ol>
+
+            <h3 className="mt-6 text-xl font-semibold text-gray-900">Data Deletion Process</h3>
+            <ul className="mt-3 list-disc pl-5 sm:pl-6 space-y-2 text-gray-700 leading-8 text-[15px] sm:text-base">
+              <li>Upon receiving a valid deletion request, we will initiate account deletion within <span className="font-semibold">24–72 hours</span>.</li>
+              <li>Certain data may be retained for a limited period where required by legal obligations, medical compliance requirements, or fraud prevention and dispute resolution.</li>
+            </ul>
+
+            <h3 className="mt-6 text-xl font-semibold text-gray-900">Data Retention After Deletion</h3>
+            <ul className="mt-3 list-disc pl-5 sm:pl-6 space-y-2 text-gray-700 leading-8 text-[15px] sm:text-base">
+              <li>Personal identifiable data will be deleted or anonymized.</li>
+              <li>Transactional or legal records may be retained as required by applicable laws.</li>
+            </ul>
+
+            <p className="mt-5 text-gray-700 leading-8 text-[15px] sm:text-base">
+              By using SevaLink, you acknowledge and agree to this data handling and deletion process.
+            </p>
           </section>
 
           <section id="transfer-of-your-personal-data" className="py-8 border-b border-black/10 scroll-mt-28">

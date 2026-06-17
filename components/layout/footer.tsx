@@ -112,6 +112,8 @@ export const Footer = () => {
                 <span className="hidden sm:block w-1 h-1 bg-black/30 rounded-full" />
                 <Link href="/refund-policy" className="hover-link whitespace-nowrap hover:translate-x-0.5 hover:text-red-600 transition-all">Refund Policy</Link>
                 <span className="hidden sm:block w-1 h-1 bg-black/30 rounded-full" />
+                <Link href="/delete-account" className="hover-link whitespace-nowrap hover:translate-x-0.5 hover:text-red-600 transition-all">Delete Account</Link>
+                <span className="hidden sm:block w-1 h-1 bg-black/30 rounded-full" />
                 <motion.button onClick={scrollToTop} className="text-black flex items-center gap-2 group font-semibold hover:gap-3 hover:text-red-600 transition-all" whileHover={{ y: -2 }} whileTap={{ scale: 0.95 }}>
                   Back to top
                   <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}>
